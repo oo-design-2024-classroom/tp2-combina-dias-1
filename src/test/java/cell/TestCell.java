@@ -1,3 +1,5 @@
+package cell;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -5,23 +7,16 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestCell {
-    CellFactory cellFactory;
-
-    @BeforeEach
-    public void setUp(){
-        cellFactory = new CellFactory();
-    }
 
     @Test
     public void createLiveCell(){
-        Cell cell = cellFactory.createCell(ALIVE);
+        Cell cell = new Cell(true);
         assertTrue(cell.isAlive());
     }
 
     @Test
-    public void createLiveCell(){
-        CellFactory cellFactory = new CellFactory();
-        Cell cell = cellFactory.createCell(DEAD);
+    public void createDeadCell(){
+        Cell cell = new Cell(false);
         assertFalse(cell.isAlive());
     }
 }
