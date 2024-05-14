@@ -24,7 +24,7 @@ public class TestBoard {
     }
 
     @Test
-    public void addCelltoBoard(){
+    public void addCellToBoard(){
         board = new Board(2,2,new Cell(false));
         board.setCell(0,1,new Cell(true));
         cell = board.getCell(0,1);

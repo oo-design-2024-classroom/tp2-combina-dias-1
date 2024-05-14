@@ -2,18 +2,28 @@ package board;
 
 import cell.Cell;
 
+import java.util.List;
+import java.util.ArrayList;
+import rule.Rule;
 public class Board {
     Cell[][] cells;
+    List<Rule> rules = new ArrayList<>();
+
     public Board(int row, int column, Cell cellType) {
         cells = new Cell[row][column];
         for (int i = 0; i < row; i++) {
-            for (int j = 0; j < column; j++) {
+            for (int j = 0; j < column; j++)
                 cells[i][j] = cellType;
-            }
         }
     }
     public Board(Cell[][] cells) {
         this.cells = cells;
+    }
+    public void addRule(Rule rule) {
+        rules.add(rule);
+    }
+    public void removeRule(Rule rule) {
+        rules.remove(rule);
     }
     public Cell getCell(int row, int col) {
         return cells[row][col];
