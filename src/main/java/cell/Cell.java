@@ -1,15 +1,15 @@
 package cell;
 
 public class Cell {
-    private boolean alive;
-    public Cell(boolean alive) {
-        this.alive = alive;
+    private CellType type;
+    public Cell(CellType type) {
+        this.type = type;
     }
 
-    public void setAlive(boolean alive) {
-        this.alive = alive;
+    public void setAlive(CellType type) {
+        this.type = type;
     }
     public boolean isAlive() {
-        return alive;
+        return type == CellType.ALIVE;
     }
 }

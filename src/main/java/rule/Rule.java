@@ -7,5 +7,5 @@ public abstract class Rule {
     public void setBoard(Board board) {
         this.board = board;
     }
-    abstract void rule(int row, int col); //puede cambiar por un return cell?
+    abstract void rule(int row, int col);
 }

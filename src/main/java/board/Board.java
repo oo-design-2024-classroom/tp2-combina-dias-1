@@ -5,6 +5,7 @@ import cell.Cell;
 import java.util.List;
 import java.util.ArrayList;
 import rule.Rule;
+
 public class Board {
     Cell[][] cells;
     List<Rule> rules = new ArrayList<>();
@@ -43,9 +44,20 @@ public class Board {
             neighbors++;
         if(isValidPos(row, col + 1) && getCell(row, col).isAlive())
             neighbors++;
+        if(isValidPos(row + 1, col - 1) && getCell(row + 1, col - 1).isAlive()) //CORNERS
+            neighbors++;
+        if(isValidPos(row + 1, col + 1) && getCell(row + 1, col + 1).isAlive())
+            neighbors++;
+        if(isValidPos(row - 1, col - 1) && getCell(row - 1, col - 1).isAlive())
+            neighbors++;
+        if(isValidPos(row - 1, col + 1) && getCell(row - 1, col + 1).isAlive())
+            neighbors++;
         return neighbors;
     }
     private boolean isValidPos(int row, int col) {
         return row >= 0 && row < cells.length && col >= 0 && col < cells[row].length;
+    }
+    public void nextGeneration() {
+
     }
 }
