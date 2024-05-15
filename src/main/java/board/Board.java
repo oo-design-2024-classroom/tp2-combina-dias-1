@@ -58,6 +58,15 @@ public class Board {
         return row >= 0 && row < cells.length && col >= 0 && col < cells[row].length;
     }
     public void nextGeneration() {
-
+        Cell[][] newCells = new Cell[cells.length][cells[0].length];
+        for(int row = 0; row<cells.length; row++) {
+            for(int col = 0; col<cells[row].length; col++) {
+                for(Rule rule : rules) {
+                    rule.setBoard(this);
+                    newCells[row][col] = rule.apply(row, col);
+                }
+            }
+        }
+        cells = newCells;
     }
 }

@@ -1,11 +1,12 @@
 package rule;
 
 import board.Board;
+import cell.Cell;
 
 public abstract class Rule {
-    private Board board;
+    Board board;
+    public abstract Cell apply(int row, int col);
     public void setBoard(Board board) {
         this.board = board;
     }
-    abstract void rule(int row, int col);
 }
