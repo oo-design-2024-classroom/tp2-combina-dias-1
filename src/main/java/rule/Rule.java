@@ -4,9 +4,6 @@ import board.Board;
 import cell.Cell;
 
 public abstract class Rule {
-    Board board;
-    public abstract Cell apply(int row, int col);
-    public void setBoard(Board board) {
-        this.board = board;
-    }
+    public abstract boolean isTrue(Cell cell, int neighbours);
+    public abstract Cell execute();
 }
