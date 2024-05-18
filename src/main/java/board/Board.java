@@ -29,20 +29,6 @@ public class Board {
                 cells[i][j] = cellType;
         }
     }
-    /*
-    public Board(Cell[][] cells) {
-        this.cells = cells;
-    }
-    public Cell[][] getCells() {
-        return cells;
-    }
-    public void addRule(Rule rule) {
-        rules.add(rule);
-    }
-    public void removeRule(Rule rule) {
-        rules.remove(rule);
-    }
-        */
     public Cell getCell(int row, int col) {
         return cells[row][col];
     }
