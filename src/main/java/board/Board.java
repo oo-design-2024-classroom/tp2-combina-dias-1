@@ -6,18 +6,12 @@ import java.util.Arrays;
 import java.util.List;
 import rule.Rule;
 
-public class Board {
+public class Board implements IBoard {
     Cell[][] cells;
     List<Rule> rules;
     int rows;
     int columns;
-
-    private Board(int row, int column, List<Rule> rules) {
-        this.rows = row;
-        this.columns = column;
-        cells = new Cell[row][column];
-        this.rules = rules;
-    }
+    Cell cellType;
 
     public Board(int row, int column, Cell cellType, List<Rule> rules) {
         this.rows = row;
@@ -28,6 +22,7 @@ public class Board {
             for (int j = 0; j < column; j++)
                 cells[i][j] = cellType;
         }
+        this.cellType = cellType;
     }
     public Cell getCell(int row, int col) {
         return cells[row][col];
@@ -54,7 +49,7 @@ public class Board {
         return row >= 0 && row < rows && col >= 0 && col < columns;
     }
     public Board nextGeneration() {
-        Board board = new Board(rows, columns, rules);
+        Board board = new Board(rows, columns, cellType, rules);
         for(int row = 0; row < rows; row++) {
             for(int col = 0; col < columns; col++) {
                 for(Rule rule : rules) {
@@ -64,7 +59,7 @@ public class Board {
                         Cell newCell = rule.execute();
                         board.setCell(row, col, newCell);
                         break;
-                    } else {
+                    } else { //TODO: COMPLETE
                       board.setCell(row, col, actualCell);
                     }
                 }
@@ -88,7 +83,7 @@ public class Board {
         if(o == null)
             return false;
         if(o instanceof Board board) {
-            if(board.rules != this.rules || rows != board.rows || columns != board.columns) {
+            if(rows != board.rows || columns != board.columns) {
                 return false;
             }
             return Arrays.deepEquals(cells, board.cells);

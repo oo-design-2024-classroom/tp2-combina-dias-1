@@ -3,11 +3,10 @@ package board;
 import cell.Cell;
 
 public interface IBoard {
-    int getRows();
-    int getCols();
-    void setCell(int row, int col, Cell cell);
     Cell getCell(int row, int col);
+    void setCell(int row, int col, Cell cell);
     int getNeighbors(int row, int col);
-    void nextGeneration();
+    Board nextGeneration();
     String toString();
+    boolean equals(Object o);
 }

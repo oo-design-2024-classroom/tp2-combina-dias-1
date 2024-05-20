@@ -10,6 +10,7 @@ public class Cell {
     public boolean isAlive() {
         return type == CellType.ALIVE;
     }
+
     public boolean equals(Object other) {
         if (other instanceof Cell otherCell)
             return type == otherCell.type;
