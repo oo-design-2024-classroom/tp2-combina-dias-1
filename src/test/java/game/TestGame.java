@@ -1,3 +1,5 @@
+package game;
+
 import cell.*;
 import observer.ConsoleOutput;
 import observer.GameObserver;
@@ -10,10 +12,10 @@ public class TestGame {
     @Test
     public void testThreeTurns() throws InterruptedException {
         ArrayList<Rule> rules = new ArrayList<>();
-        rules.add(new RuleBorn());
-        rules.add(new RuleStayAlive());
-        rules.add(new RuleDieOverpopulation());
-        rules.add(new RuleDieUnderpopulation());
+        rules.add(new RuleBorn(new ArrayList<>(2)));
+        rules.add(new RuleStayAlive(new ArrayList<>(3)));
+        rules.add(new RuleDieOverpopulation(new ArrayList<>(2)));
+        rules.add(new RuleDieUnderpopulation(new ArrayList<>(2)));
         Game game = new Game(5, 5, new Cell(CellType.DEAD), rules);
         GameObserver observer = new ConsoleOutput(game.getBoard());
         game.addObserver(observer);

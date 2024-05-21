@@ -24,6 +24,9 @@ public class Board implements IBoard {
         }
         this.cellType = cellType;
     }
+
+
+
     public Cell getCell(int row, int col) {
         return cells[row][col];
     }
@@ -89,5 +92,24 @@ public class Board implements IBoard {
             return Arrays.deepEquals(cells, board.cells);
         }
         return false;
+    }
+    public static boolean checkValidStringBoard(String board) {
+        int columns = 0;
+        int i = 0;
+        while(board.charAt(i) != '|' || board.charAt(i) != '\n') {
+            columns++;
+            i++;
+        }
+        int cantColumnsAtTheMoment = 0;
+        for(int j = 0; j < board.length(); j++) {
+            if(board.charAt(j) == '\n' && cantColumnsAtTheMoment != columns) {
+                return false;
+            } else if(board.charAt(j) == '\n') {
+                cantColumnsAtTheMoment = 0;
+            } else if (board.charAt(j) != '|' && board.charAt(j) != ' '){
+                cantColumnsAtTheMoment++;
+            }
+        }
+        return true;
     }
 }

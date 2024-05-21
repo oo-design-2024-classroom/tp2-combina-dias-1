@@ -1,3 +1,5 @@
+package game;
+
 import board.*;
 import cell.Cell;
 import cell.CellType;
