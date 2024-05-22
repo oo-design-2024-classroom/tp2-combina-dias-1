@@ -3,6 +3,7 @@ package game;
 import board.*;
 import cell.Cell;
 import cell.CellType;
+import factory.RulesFactory;
 import rule.*;
 import observer.GameObserver;
 
@@ -14,12 +15,7 @@ public class Game {
     private IBoard board;
     private List<GameObserver> observers = new ArrayList<>();
 
-    public Game(int rows, int cols) {
-        List<Rule> rules = new ArrayList<>();
-        rules.add(new RuleBorn());
-        rules.add(new RuleStayAlive());
-        rules.add(new RuleDieOverpopulation());
-        rules.add(new RuleDieUnderpopulation());
+    public Game(int rows, int cols, List<Rule> rules) {
         board = new Board(rows, cols, new Cell(CellType.DEAD), rules);
     }
     public Game(int rows, int cols, Cell cell, List<Rule> rules) {

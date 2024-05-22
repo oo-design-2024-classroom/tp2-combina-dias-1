@@ -1,5 +1,7 @@
 package board;
 
+import factory.RulesFactory;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -16,6 +18,12 @@ public class TestBoard {
     Cell cell;
     int rows = 5;
     int cols = 5;
+    List<Rule> rules;
+
+    @BeforeEach
+    public void setUp(){
+        rules = RulesFactory.factory("B3/S23");
+    }
 
     @Test
     public void createBoardWithAllCellsDead(){
@@ -49,11 +57,6 @@ public class TestBoard {
     }
     @Test
     public void checkGeneration() {
-        List<Rule> rules = new ArrayList<>();
-        rules.add(new RuleBorn());
-        rules.add(new RuleDieOverpopulation());
-        rules.add(new RuleDieUnderpopulation());
-        rules.add(new RuleStayAlive());
         board = new Board(5,5,new Cell(CellType.DEAD), rules);
         board.setCell(1,2,new Cell(CellType.ALIVE));
         board.setCell(2,2,new Cell(CellType.ALIVE));
@@ -70,11 +73,6 @@ public class TestBoard {
     }
     @Test
     public void testGenerationCycle() {
-        List<Rule> rules = new ArrayList<>();
-        rules.add(new RuleBorn());
-        rules.add(new RuleDieOverpopulation());
-        rules.add(new RuleDieUnderpopulation());
-        rules.add(new RuleStayAlive());
         board = new Board(5,5,new Cell(CellType.DEAD), rules);
         board.setCell(1,2,new Cell(CellType.ALIVE));
         board.setCell(2,2,new Cell(CellType.ALIVE));

@@ -1,28 +1,48 @@
 package factory;
 import rule.*;
+import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
 
 public class RulesFactory {
-    public static List<Rule> factory(String rule) {
+    public static List<Rule> factory(String ruleString) {
         List<Rule> rules = new ArrayList<>();
-        String[] rulesSeparated = rule.split("/");
+        String[] rulesSeparated = ruleString.split("/");
         if (rulesSeparated.length != 2)
-            throw new IllegalArgumentException("Invalid input: " + rule);
+            throw new IllegalArgumentException("Invalid input: " + ruleString);
 
-        int bornRule = Integer.parseInt(rulesSeparated[0].substring(1));
-        int stayAliveMin = (int) rulesSeparated[1].charAt(1);
-        int stayAliveMax = (int) rulesSeparated[1].charAt(2);
+        List<Integer> amountNeighboursToCheckBorn = new ArrayList<>();
+        List<Integer> amountNeighboursToCheckStayAlive = new ArrayList<>();
 
-        rules.add(new RuleBorn(new ArrayList<>(bornRule)));
-        rules.add(new RuleDieOverpopulation(new ArrayList<>(stayAliveMax)));
-        rules.add(new RuleDieUnderpopulation(new ArrayList<>(stayAliveMin)));
+        for(String rulesSubstring : rulesSeparated) {
+            if (rulesSubstring.charAt(0) == 'B') {
+                amountNeighboursToCheckBorn = numberOfNeighboursToCheck(rulesSubstring);
+            } else if (rulesSubstring.charAt(0) == 'S') {
+                amountNeighboursToCheckStayAlive = numberOfNeighboursToCheck(rulesSubstring);
+            } else throw new IllegalArgumentException("Invalid input: " + ruleString);
+        }
 
-        ArrayList<Integer> stayAlive = new ArrayList<>();
-        stayAlive.add(stayAliveMax);
-        stayAlive.add(stayAliveMin);
-        rules.add(new RuleStayAlive(stayAlive));
+        List<Integer> amountNeighboursToCheckDieOverpopulation = new ArrayList<>();
+        List<Integer> amountNeighboursToCheckDieUnderpopulation = new ArrayList<>();
 
+        int stayAliveMin = Collections.min(amountNeighboursToCheckStayAlive);
+        amountNeighboursToCheckDieUnderpopulation.add(stayAliveMin);
+
+        int stayAliveMax = Collections.max(amountNeighboursToCheckStayAlive);
+        amountNeighboursToCheckDieOverpopulation.add(stayAliveMax);
+
+        rules.add(new RuleBorn(amountNeighboursToCheckBorn));
+        rules.add(new RuleDieOverpopulation(amountNeighboursToCheckDieOverpopulation));
+        rules.add(new RuleDieUnderpopulation(amountNeighboursToCheckDieUnderpopulation));
+        rules.add(new RuleStayAlive(amountNeighboursToCheckStayAlive));
         return rules;
+    }
+
+    private static List<Integer> numberOfNeighboursToCheck(String rule) {
+        if (rule.length() < 2) throw new IllegalArgumentException("Invalid input: " + rule);
+        List<Integer> neighbours = new ArrayList<>();
+        for(int i = 1; i < rule.length(); i++)
+            neighbours.add(Character.getNumericValue(rule.charAt(i)));
+        return neighbours;
     }
 }
