@@ -4,6 +4,8 @@ import cell.Cell;
 
 import java.util.Arrays;
 import java.util.List;
+
+import cell.CellType;
 import rule.Rule;
 
 public class Board implements IBoard {
@@ -25,6 +27,26 @@ public class Board implements IBoard {
         this.cellType = cellType;
     }
 
+    public static Board fromString(String board, List<Rule> rules) {
+        if(!checkValidStringBoard(board))
+            throw new IllegalArgumentException("Invalid board");
+
+        String[] rows = board.split("\\|\\n");
+        int rowsCant = rows.length;
+        int columnsCant = rows[0].length();
+        Board newBoard = new Board(rowsCant, columnsCant, new Cell(CellType.DEAD), rules);
+        for(int i = 0; i < rowsCant; i++) {
+            String[] columns = rows[i].split("");
+            for(int j = 0; j < columnsCant; j++) {
+                if(columns[j].equals("O")) {
+                    newBoard.setCell(i, j, new Cell(CellType.ALIVE));
+                } else {
+                    newBoard.setCell(i, j, new Cell(CellType.DEAD));
+                }
+            }
+        }
+        return newBoard;
+    }
 
 
     public Cell getCell(int row, int col) {

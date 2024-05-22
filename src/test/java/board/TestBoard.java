@@ -81,4 +81,26 @@ public class TestBoard {
         newBoard = newBoard.nextGeneration();
         assertThat(newBoard).isEqualTo(board);
     }
+
+    @Test
+    void testNotEqualsForCells(){
+        board = new Board(5,5,new Cell(CellType.DEAD), rules);
+        board.setCell(1,2,new Cell(CellType.ALIVE));
+        Board newBoard = new Board(5,5,new Cell(CellType.DEAD), rules);
+        assertThat(newBoard).isNotEqualTo(board);
+    }
+
+    @Test
+    void testNotEqualsForSize(){
+        board = new Board(5,5,new Cell(CellType.DEAD), rules);
+        Board newBoard = new Board(4,4,new Cell(CellType.DEAD), rules);
+        assertThat(newBoard).isNotEqualTo(board);
+    }
+
+    @Test
+    void testValidStringBoard(){
+        String board = "XXX\nXXX\nOOO\n";
+        assertTrue(Board.checkValidStringBoard(board));
+
+    }
 }
