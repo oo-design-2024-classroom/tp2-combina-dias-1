@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class RulesFactory {
-    public static List<Rule> factory(String ruleString) {
+    public List<Rule> factory(String ruleString) {
         List<Rule> rules = new ArrayList<>();
         String[] rulesSeparated = ruleString.split("/");
         if (rulesSeparated.length != 2)

@@ -19,6 +19,8 @@ public class Cell {
     public String toString() {
         if(type == CellType.ALIVE)
             return "O";
-        return "X";
+        else if(type == CellType.DEAD)
+            return "X";
+        return "?";
     }
 }

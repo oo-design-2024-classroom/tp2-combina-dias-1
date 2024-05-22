@@ -2,6 +2,7 @@ package rule;
 
 import board.Board;
 import cell.Cell;
+import factory.CellFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,4 +14,7 @@ public abstract class Rule {
     }
     public abstract boolean isTrue(Cell cell, int neighbours);
     public abstract Cell execute();
+    public List<Integer> getNeighboursToCheck() { //for testing
+        return neighboursToCheck;
+    }
 }

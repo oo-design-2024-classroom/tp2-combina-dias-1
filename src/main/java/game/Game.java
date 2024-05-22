@@ -2,8 +2,7 @@ package game;
 
 import board.*;
 import cell.Cell;
-import cell.CellType;
-import factory.RulesFactory;
+import factory.CellFactory;
 import rule.*;
 import observer.GameObserver;
 
@@ -16,19 +15,13 @@ public class Game {
     private List<GameObserver> observers = new ArrayList<>();
 
     public Game(int rows, int cols, List<Rule> rules) {
-        board = new Board(rows, cols, new Cell(CellType.DEAD), rules);
+        board = new Board(rows, cols, rules);
     }
-    public Game(int rows, int cols, Cell cell, List<Rule> rules) {
-        board = new Board(rows, cols, cell, rules);
+    public Game(IBoard board) {
+        this.board = board;
     }
     public void addObserver(GameObserver observer) {
         observers.add(observer);
-    }
-    public void removeObserver(GameObserver observer) {
-        observers.remove(observer);
-    }
-    public IBoard getBoard() {
-        return board;
     }
     public void setCell(int row, int col, Cell cell) {
         board.setCell(row, col, cell);
