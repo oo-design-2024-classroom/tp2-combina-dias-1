@@ -38,4 +38,7 @@ public class Game {
             Thread.sleep(1000);
         }
     }
+    IBoard getBoard(){
+        return board;
+    }
 }

@@ -110,5 +110,4 @@ public class TestBoard {
         BoardFactory boardFactory = new BoardFactory();
         assertThat(boardFactory.checkValidStringBoard(board)).isFalse();
     }
-
 }
