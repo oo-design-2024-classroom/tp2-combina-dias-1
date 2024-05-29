@@ -10,13 +10,13 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class TestBoardFactory {
+public class TestClassicBoardFactory {
     @Test
     public void testBoardFactory(){
         BoardFactory factory = new BoardFactory();
         RulesFactory rulesFactory = new RulesFactory();
         List<Rule> rules = rulesFactory.factory("B3/S23");
-        IBoard board = factory.factory(2,2,"XX\nXO",rules);
+        Board board = factory.factory(2,2,"XX\nXO",rules);
         assertTrue(board.getCell(1,1).isAlive());
         assertFalse(board.getCell(0,0).isAlive());
     }

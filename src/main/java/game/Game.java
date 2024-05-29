@@ -2,7 +2,6 @@ package game;
 
 import board.*;
 import cell.Cell;
-import factory.CellFactory;
 import rule.*;
 import observer.GameObserver;
 
@@ -11,13 +10,13 @@ import java.util.List;
 
 public class Game {
 
-    private IBoard board;
+    private ClassicBoard board;
     private List<GameObserver> observers = new ArrayList<>();
 
     public Game(int rows, int cols, List<Rule> rules) {
-        board = new Board(rows, cols, rules);
+        board = new ClassicBoard(rows, cols, rules);
     }
-    public Game(IBoard board) {
+    public Game(ClassicBoard board) {
         this.board = board;
     }
     public void addObserver(GameObserver observer) {
@@ -38,7 +37,7 @@ public class Game {
             Thread.sleep(1000);
         }
     }
-    IBoard getBoard(){
+    Board getBoard(){
         return board;
     }
 }

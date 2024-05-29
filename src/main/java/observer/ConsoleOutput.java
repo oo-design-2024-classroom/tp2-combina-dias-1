@@ -1,8 +1,8 @@
 package observer;
-import board.IBoard;
+import board.Board;
 
 public class ConsoleOutput implements GameObserver {
-    public void update(IBoard board) {
+    public void update(Board board) {
         System.out.println(board);
     }
 }

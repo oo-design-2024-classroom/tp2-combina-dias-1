@@ -60,8 +60,8 @@ public class Main {
             RulesFactory rulesFactory = new RulesFactory();
             List<Rule> rules = rulesFactory.factory(rulesString);
             BoardFactory boardFactory = new BoardFactory();
-            Board board = boardFactory.factory(rows, columns, boardString, rules);
-            Game game = new Game(board);
+            ClassicBoard classicBoard = boardFactory.factory(rows, columns, boardString, rules);
+            Game game = new Game(classicBoard);
             game.play(generations);
         } catch (IOException e) {
             e.printStackTrace();

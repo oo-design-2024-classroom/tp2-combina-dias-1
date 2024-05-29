@@ -1,6 +1,6 @@
 package game;
 
-import board.Board;
+import board.ClassicBoard;
 import factory.BoardFactory;
 import factory.RulesFactory;
 import observer.ConsoleOutput;
@@ -26,8 +26,8 @@ public class TestGame {
     public void testThreeTurns() throws InterruptedException {
         BoardFactory boardFactory = new BoardFactory();
         String boardStr = "XOX\nXOX\nXOX";
-        Board board = boardFactory.factory(3,3,boardStr, rules);
-        Game game = new Game(board);
+        ClassicBoard classicBoard = boardFactory.factory(3,3,boardStr, rules);
+        Game game = new Game(classicBoard);
         ConsoleOutput output = new ConsoleOutput();
         game.addObserver(output);
         game.play(3);

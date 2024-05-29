@@ -1,31 +1,31 @@
 package factory;
 
-import board.Board;
+import board.ClassicBoard;
 import rule.Rule;
 
 import java.util.List;
 
 public class BoardFactory {
-    public Board factory(int rows, int columns, String board, List<Rule> rules) {
+    public ClassicBoard factory(int rows, int columns, String board, List<Rule> rules) {
         CellFactory cellFactory = new CellFactory();
         if(!checkValidStringBoard(board))
             throw new IllegalArgumentException("Invalid board");
         if(getRows(board) != rows || getColumns(board) != columns)
             throw new IllegalArgumentException("Invalid board");
-        Board newBoard = new Board(rows, columns, rules);
+        ClassicBoard newClassicBoard = new ClassicBoard(rows, columns, rules);
         int actualRow = 0;
         int actualColumn = 0;
         for(int i = 0; i < board.length(); i++) {
             char actualChar = board.charAt(i);
             if (actualChar == 'X' || actualChar == 'O') {
-                newBoard.setCell(actualRow, actualColumn, cellFactory.factory(actualChar));
+                newClassicBoard.setCell(actualRow, actualColumn, cellFactory.factory(actualChar));
                 actualColumn++;
             } else if (actualChar == '\n') {
                 actualRow++;
                 actualColumn = 0;
             }
         }
-        return newBoard;
+        return newClassicBoard;
     }
     private int getRows(String board) {
         if(board.isEmpty())

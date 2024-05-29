@@ -1,10 +1,7 @@
 package rule;
 
-import board.Board;
 import cell.Cell;
-import factory.CellFactory;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Rule {
