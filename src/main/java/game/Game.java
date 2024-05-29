@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Game {
 
-    private ClassicBoard board;
+    private Board board;
     private List<GameObserver> observers = new ArrayList<>();
 
     public Game(int rows, int cols, List<Rule> rules) {

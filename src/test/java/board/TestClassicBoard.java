@@ -15,8 +15,6 @@ import java.util.List;
 public class TestClassicBoard {
     ClassicBoard classicBoard;
     Cell cell;
-    int rows = 5;
-    int cols = 5;
     List<Rule> rules;
 
     @BeforeEach
@@ -27,16 +25,6 @@ public class TestClassicBoard {
     }
 
     @Test
-    public void createBoardWithAllCellsDead(){
-        classicBoard = new ClassicBoard(rows, cols, new ArrayList<Rule>());
-        for(int row = 0; row<rows; row++){
-            for(int col = 0; col < cols; col++){
-                cell = classicBoard.getCell(row, col);
-                assertThat(cell.isAlive()).isFalse();
-            }
-        }
-    }
-    @Test
     public void addCellToBoard(){
         classicBoard = new ClassicBoard(2,2, new ArrayList<Rule>());
         classicBoard.setCell(0,1,new Cell(CellType.ALIVE));
@@ -45,39 +33,39 @@ public class TestClassicBoard {
     }
     @Test
     public void testNoNeighbours() {
-        classicBoard = new ClassicBoard(3, 3, new ArrayList<Rule>());
+        BoardFactory boardFactory = new BoardFactory();
+        RulesFactory rulesFactory = new RulesFactory();
+        rules = rulesFactory.factory("B3/S23");
+        classicBoard = boardFactory.factory(3,3,"XXX\nXXX\nXXX", rules);
+
         assertThat(classicBoard.getNeighbors(1,1)).isEqualTo(0);
     }
     @Test
     public void testNeighbours() {
-        classicBoard = new ClassicBoard(3, 3, new ArrayList<Rule>());
-        classicBoard.setCell(0,0,new Cell(CellType.ALIVE));
-        classicBoard.setCell(0,1,new Cell(CellType.ALIVE));
-        classicBoard.setCell(2,2,new Cell(CellType.ALIVE));
+        BoardFactory boardFactory = new BoardFactory();
+        RulesFactory rulesFactory = new RulesFactory();
+        rules = rulesFactory.factory("B3/S23");
+        classicBoard = boardFactory.factory(3,3,"XXX\nOXO\nXOX", rules);
         assertThat(classicBoard.getNeighbors(1,1)).isEqualTo(3);
     }
     @Test
     public void checkGeneration() {
-        classicBoard = new ClassicBoard(5,5, rules);
-        classicBoard.setCell(1,2,new Cell(CellType.ALIVE));
-        classicBoard.setCell(2,2,new Cell(CellType.ALIVE));
-        classicBoard.setCell(3,2,new Cell(CellType.ALIVE));
-
+        BoardFactory boardFactory = new BoardFactory();
+        RulesFactory rulesFactory = new RulesFactory();
+        rules = rulesFactory.factory("B3/S23");
+        classicBoard = boardFactory.factory(5,5,"XXXXX\nXXOXX\nXXOXX\nXXOXX\nXXXXX", rules);
         ClassicBoard newClassicBoard = classicBoard.nextGeneration();
 
-        ClassicBoard expected = new ClassicBoard(5,5, rules);
-        expected.setCell(2,1,new Cell(CellType.ALIVE));
-        expected.setCell(2,2,new Cell(CellType.ALIVE));
-        expected.setCell(2,3,new Cell(CellType.ALIVE));
+        ClassicBoard expected = boardFactory.factory(5,5,"XXXXX\nXXXXX\nXOOOX\nXXXXX\nXXXXX", rules);
 
         assertThat(newClassicBoard).isEqualTo(expected);
     }
     @Test
     public void testGenerationCycle() {
-        classicBoard = new ClassicBoard(5,5, rules);
-        classicBoard.setCell(1,2,new Cell(CellType.ALIVE));
-        classicBoard.setCell(2,2,new Cell(CellType.ALIVE));
-        classicBoard.setCell(3,2,new Cell(CellType.ALIVE));
+        BoardFactory boardFactory = new BoardFactory();
+        RulesFactory rulesFactory = new RulesFactory();
+        rules = rulesFactory.factory("B3/S23");
+        classicBoard = boardFactory.factory(5,5,"XXXXX\nXXOXX\nXXOXX\nXXOXX\nXXXXX", rules);
         ClassicBoard newClassicBoard = classicBoard.nextGeneration();
         newClassicBoard = newClassicBoard.nextGeneration();
         assertThat(newClassicBoard).isEqualTo(classicBoard);

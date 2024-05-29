@@ -35,8 +35,8 @@ public abstract class Board {
         cells[row][col] = cell;
     }
 
-    abstract int getNeighbors(int row, int col);
-    abstract Board nextGeneration();
+    public abstract int getNeighbors(int row, int col);
+    public abstract Board nextGeneration();
     public String toString() {
         StringBuilder output = new StringBuilder();
         for(int i = 0; i < rows; i++) {

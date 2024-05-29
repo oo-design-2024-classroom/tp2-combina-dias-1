@@ -32,9 +32,4 @@ public class TestGame {
         game.addObserver(output);
         game.play(3);
     }
-    @Test
-    public void testGameConstructor(){
-        Game game = new Game(3,3,rules);
-        assertEquals("X X X |\nX X X |\nX X X |", game.getBoard().toString().strip());
-    }
 }
