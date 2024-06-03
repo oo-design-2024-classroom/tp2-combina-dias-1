@@ -1,6 +1,6 @@
 package rule;
 
-import cell.Cell;
+import cell.ClassicCell;
 import cell.CellType;
 import org.junit.jupiter.api.Test;
 
@@ -14,11 +14,11 @@ public class TestRule {
     public void testRuleDieUnderpopulation() {
         ArrayList<Integer> neighboursToCheck = new ArrayList<>();
         neighboursToCheck.add(2);
-        RuleDieUnderpopulation rule = new RuleDieUnderpopulation(neighboursToCheck);
-        Cell cell = new Cell(CellType.ALIVE);
-        assertTrue(rule.isTrue(cell, 1));
-        assertFalse(rule.isTrue(cell, 2));
-        assertFalse(rule.isTrue(cell, 3));
+        RuleDieUnderpopulationClassic rule = new RuleDieUnderpopulationClassic(neighboursToCheck);
+        ClassicCell classicCell = new ClassicCell(CellType.ALIVE);
+        assertTrue(rule.isTrue(classicCell, 1));
+        assertFalse(rule.isTrue(classicCell, 2));
+        assertFalse(rule.isTrue(classicCell, 3));
     }
 
     @Test
@@ -26,24 +26,24 @@ public class TestRule {
         ArrayList<Integer> neighboursToCheck = new ArrayList<>();
         neighboursToCheck.add(2);
         neighboursToCheck.add(3);
-        Rule rule = new RuleStayAlive(neighboursToCheck);
-        Cell cell = new Cell(CellType.ALIVE);
-        assertFalse(rule.isTrue(cell, 1));
-        assertTrue(rule.isTrue(cell, 2));
-        assertTrue(rule.isTrue(cell, 3));
+        Rule rule = new RuleStayAliveClassic(neighboursToCheck);
+        ClassicCell classicCell = new ClassicCell(CellType.ALIVE);
+        assertFalse(rule.isTrue(classicCell, 1));
+        assertTrue(rule.isTrue(classicCell, 2));
+        assertTrue(rule.isTrue(classicCell, 3));
     }
 
     @Test
     public void testRuleDieOverPopulation(){
         ArrayList<Integer> neighboursToCheck = new ArrayList<>();
         neighboursToCheck.add(3);
-        Rule rule = new RuleDieOverpopulation(neighboursToCheck);
-        Cell cell = new Cell(CellType.ALIVE);
+        Rule rule = new RuleDieOverpopulationClassic(neighboursToCheck);
+        ClassicCell classicCell = new ClassicCell(CellType.ALIVE);
         for(int i = 0; i<=8;i++){
             if(i<4){
-                assertFalse(rule.isTrue(cell, i));
+                assertFalse(rule.isTrue(classicCell, i));
             } else {
-                assertTrue(rule.isTrue(cell, i));
+                assertTrue(rule.isTrue(classicCell, i));
             }
         }
     }
@@ -52,13 +52,13 @@ public class TestRule {
     public void testRuleDieUnderPopulation(){
         ArrayList<Integer> neighboursToCheck = new ArrayList<>();
         neighboursToCheck.add(2);
-        Rule rule = new RuleDieUnderpopulation(neighboursToCheck);
-        Cell cell = new Cell(CellType.ALIVE);
+        Rule rule = new RuleDieUnderpopulationClassic(neighboursToCheck);
+        ClassicCell classicCell = new ClassicCell(CellType.ALIVE);
         for(int i = 0; i<=8;i++){
             if(i<2){
-                assertTrue(rule.isTrue(cell, i));
+                assertTrue(rule.isTrue(classicCell, i));
             } else {
-                assertFalse(rule.isTrue(cell, i));
+                assertFalse(rule.isTrue(classicCell, i));
             }
         }
     }

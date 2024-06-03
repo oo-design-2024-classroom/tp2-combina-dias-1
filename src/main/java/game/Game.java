@@ -1,7 +1,7 @@
 package game;
 
 import board.*;
-import cell.Cell;
+import cell.ClassicCell;
 import rule.*;
 import observer.GameObserver;
 
@@ -22,8 +22,8 @@ public class Game {
     public void addObserver(GameObserver observer) {
         observers.add(observer);
     }
-    public void setCell(int row, int col, Cell cell) {
-        board.setCell(row, col, cell);
+    public void setCell(int row, int col, ClassicCell classicCell) {
+        board.setCell(row, col, classicCell);
     }
     public void notifyObservers() {
         for (GameObserver observer : observers) {

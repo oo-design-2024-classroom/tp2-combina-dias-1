@@ -1,7 +1,8 @@
 package board;
 
-import cell.Cell;
+import cell.ClassicCell;
 import java.util.List;
+
 import rule.Rule;
 
 public class ClassicBoard extends Board {
@@ -26,19 +27,20 @@ public class ClassicBoard extends Board {
     private boolean isValidPos(int row, int col) {
         return row >= 0 && row < rows && col >= 0 && col < columns;
     }
+
     public ClassicBoard nextGeneration() {
         ClassicBoard classicBoard = new ClassicBoard(rows, columns, rules);
         for(int row = 0; row < rows; row++) {
             for(int col = 0; col < columns; col++) {
                 for(Rule rule : rules) {
-                    Cell actualCell = getCell(row, col);
+                    ClassicCell actualClassicCell = getCell(row, col);
                     int neighboursCant = getNeighbors(row, col);
-                    if(rule.isTrue(actualCell, neighboursCant)) {
-                        Cell newCell = rule.execute();
-                        classicBoard.setCell(row, col, newCell);
+                    if(rule.isTrue(actualClassicCell, neighboursCant)) {
+                        ClassicCell newClassicCell = rule.execute();
+                        classicBoard.setCell(row, col, newClassicCell);
                         break;
                     } else {
-                      classicBoard.setCell(row, col, actualCell);
+                      classicBoard.setCell(row, col, actualClassicCell);
                     }
                 }
             }

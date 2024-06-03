@@ -14,7 +14,7 @@ import java.util.List;
 
 public class TestClassicBoard {
     ClassicBoard classicBoard;
-    Cell cell;
+    ClassicCell classicCell;
     List<Rule> rules;
 
     @BeforeEach
@@ -27,9 +27,9 @@ public class TestClassicBoard {
     @Test
     public void addCellToBoard(){
         classicBoard = new ClassicBoard(2,2, new ArrayList<Rule>());
-        classicBoard.setCell(0,1,new Cell(CellType.ALIVE));
-        cell = classicBoard.getCell(0,1);
-        assertThat(cell.isAlive()).isTrue();
+        classicBoard.setCell(0,1,new ClassicCell(CellType.ALIVE));
+        classicCell = classicBoard.getCell(0,1);
+        assertThat(classicCell.isAlive()).isTrue();
     }
     @Test
     public void testNoNeighbours() {
@@ -74,7 +74,7 @@ public class TestClassicBoard {
     @Test
     void testNotEqualsForCells(){
         classicBoard = new ClassicBoard(5,5, rules);
-        classicBoard.setCell(1,2,new Cell(CellType.ALIVE));
+        classicBoard.setCell(1,2,new ClassicCell(CellType.ALIVE));
         ClassicBoard newClassicBoard = new ClassicBoard(5,5, rules);
         assertThat(newClassicBoard).isNotEqualTo(classicBoard);
     }

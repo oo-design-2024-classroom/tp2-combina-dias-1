@@ -31,10 +31,10 @@ public class RulesFactory {
         int stayAliveMax = Collections.max(amountNeighboursToCheckStayAlive);
         amountNeighboursToCheckDieOverpopulation.add(stayAliveMax);
 
-        rules.add(new RuleBorn(amountNeighboursToCheckBorn));
-        rules.add(new RuleDieOverpopulation(amountNeighboursToCheckDieOverpopulation));
-        rules.add(new RuleDieUnderpopulation(amountNeighboursToCheckDieUnderpopulation));
-        rules.add(new RuleStayAlive(amountNeighboursToCheckStayAlive));
+        rules.add(new RuleBornClassic(amountNeighboursToCheckBorn));
+        rules.add(new RuleDieOverpopulationClassic(amountNeighboursToCheckDieOverpopulation));
+        rules.add(new RuleDieUnderpopulationClassic(amountNeighboursToCheckDieUnderpopulation));
+        rules.add(new RuleStayAliveClassic(amountNeighboursToCheckStayAlive));
         return rules;
     }
 

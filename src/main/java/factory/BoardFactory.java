@@ -1,6 +1,7 @@
 package factory;
 
 import board.ClassicBoard;
+import factory.cell.CellFactory;
 import rule.Rule;
 
 import java.util.List;

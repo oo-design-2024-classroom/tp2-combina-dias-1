@@ -1,38 +1,37 @@
 package board;
 
-import cell.Cell;
-import cell.CellType;
+import cell.ClassicCell;
 import rule.Rule;
 
 import java.util.Arrays;
 import java.util.List;
 
 public abstract class Board {
-    Cell[][] cells;
+    ClassicCell[][] classicCells;
     List<Rule> rules;
     int rows;
     int columns;
     public Board(int rows, int columns, List<Rule> rules) {
         this.rows = rows;
         this.columns = columns;
-        cells = new Cell[rows][columns];
+        classicCells = new ClassicCell[rows][columns];
         this.rules = rules;
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++)
-                cells[i][j] = null;
+                classicCells[i][j] = null;
         }
     }
-    public Board(int rows, int columns, List<Rule> rules, Cell[][] cells) {
+    public Board(int rows, int columns, List<Rule> rules, ClassicCell[][] classicCells) {
         this.rows = rows;
         this.columns = columns;
-        this.cells = cells;
+        this.classicCells = classicCells;
         this.rules = rules;
     }
-    public Cell getCell(int row, int col) {
-        return cells[row][col];
+    public ClassicCell getCell(int row, int col) {
+        return classicCells[row][col];
     }
-    public void setCell(int row, int col, Cell cell) {
-        cells[row][col] = cell;
+    public void setCell(int row, int col, ClassicCell classicCell) {
+        classicCells[row][col] = classicCell;
     }
 
     public abstract int getNeighbors(int row, int col);
@@ -54,7 +53,7 @@ public abstract class Board {
         if(o instanceof ClassicBoard classicBoard) {
             if(rows != classicBoard.rows || columns != classicBoard.columns)
                 return false;
-            return Arrays.deepEquals(cells, classicBoard.cells);
+            return Arrays.deepEquals(classicCells, classicBoard.classicCells);
         }
         return false;
     }
