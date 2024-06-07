@@ -2,31 +2,31 @@ package board;
 
 import cell.Cell;
 import cell.ClassicCell;
-import rule.Rule;
+import rule.classic.ClassicRule;
 
 import java.util.Arrays;
 import java.util.List;
 
 public abstract class Board {
     Cell[][] classicCells;
-    List<Rule> rules;
+    List<ClassicRule> classicRules;
     int rows;
     int columns;
-    public Board(int rows, int columns, List<Rule> rules) {
+    public Board(int rows, int columns, List<ClassicRule> classicRules) {
         this.rows = rows;
         this.columns = columns;
         classicCells = new ClassicCell[rows][columns];
-        this.rules = rules;
+        this.classicRules = classicRules;
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++)
                 classicCells[i][j] = null;
         }
     }
-    public Board(int rows, int columns, List<Rule> rules, ClassicCell[][] classicCells) {
+    public Board(int rows, int columns, List<ClassicRule> classicRules, ClassicCell[][] classicCells) {
         this.rows = rows;
         this.columns = columns;
         this.classicCells = classicCells;
-        this.rules = rules;
+        this.classicRules = classicRules;
     }
     public Cell getCell(int row, int col) {
         return classicCells[row][col];

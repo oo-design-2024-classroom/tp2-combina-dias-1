@@ -1,15 +1,13 @@
-package rule;
+package rule.classic;
 
 import cell.Cell;
 import cell.ClassicCell;
 import cell.CellType;
-import factory.cell.CellFactory;
-import game.GameType;
 
 import java.util.List;
 
-public class RuleDieUnderpopulationClassic extends Rule {
-    public RuleDieUnderpopulationClassic(List<Integer> neighboursToCheck) {
+public class ClassicRuleDieUnderpopulationClassic extends ClassicRule {
+    public ClassicRuleDieUnderpopulationClassic(List<Integer> neighboursToCheck) {
         super(neighboursToCheck);
         if(neighboursToCheck.size() != 1)
             throw new IllegalArgumentException("Illegal number of neighbours to check");

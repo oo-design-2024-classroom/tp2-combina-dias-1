@@ -1,15 +1,12 @@
-package rule;
+package rule.classic;
 
 import cell.Cell;
-import cell.ClassicCell;
-import factory.cell.CellFactory;
-import game.GameType;
 
 import java.util.List;
 
-public abstract class Rule {
+public abstract class ClassicRule {
     protected List<Integer> neighboursToCheck;
-    public Rule(List<Integer> neighboursToCheck) { //TODO: CAMBIAR CELLTYPE
+    public ClassicRule(List<Integer> neighboursToCheck) { //TODO: CAMBIAR CELLTYPE
         this.neighboursToCheck = neighboursToCheck;
     }
     public abstract boolean isTrue(Cell classicCell, int neighbours);

@@ -3,7 +3,7 @@ package board;
 import factory.board.ClassicBoardFactory;
 import factory.rules.ClassicRulesFactory;
 import org.junit.jupiter.api.Test;
-import rule.Rule;
+import rule.classic.ClassicRule;
 
 import java.util.List;
 
@@ -15,8 +15,8 @@ public class TestClassicClassicBoardFactory {
     public void testBoardFactory(){
         ClassicBoardFactory factory = new ClassicBoardFactory();
         ClassicRulesFactory classicRulesFactory = new ClassicRulesFactory();
-        List<Rule> rules = classicRulesFactory.factory("B3/S23");
-        Board board = factory.factory(2,2,"XX\nXO",rules);
+        List<ClassicRule> classicRules = classicRulesFactory.factory("B3/S23");
+        Board board = factory.factory(2,2,"XX\nXO", classicRules);
         assertTrue(board.getCell(1,1).isAlive());
         assertFalse(board.getCell(0,0).isAlive());
     }

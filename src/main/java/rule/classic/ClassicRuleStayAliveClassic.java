@@ -1,15 +1,13 @@
-package rule;
+package rule.classic;
 
 import cell.Cell;
 import cell.ClassicCell;
 import cell.CellType;
-import factory.cell.CellFactory;
-import game.GameType;
 
 import java.util.List;
 
-public class RuleStayAliveClassic extends Rule {
-    public RuleStayAliveClassic(List<Integer> neighboursToCheck) {
+public class ClassicRuleStayAliveClassic extends ClassicRule {
+    public ClassicRuleStayAliveClassic(List<Integer> neighboursToCheck) {
         super(neighboursToCheck);
         if(neighboursToCheck.size() != 2)
             throw new IllegalArgumentException("neighboursToCheck.size() != 2");

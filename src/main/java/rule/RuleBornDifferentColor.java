@@ -1,11 +1,11 @@
 package rule;
 import cell.*;
-import factory.cell.CellFactory;
+import rule.classic.ClassicRule;
 
 import java.util.List;
 import java.util.Objects;
 
-public class RuleBornDifferentColor extends Rule {
+public class RuleBornDifferentColor extends ClassicRule {
     public RuleBornDifferentColor(List<Integer> neighborsToCheck) {
         super(neighborsToCheck);
         if(neighborsToCheck.size() != 3) {

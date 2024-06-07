@@ -1,7 +1,8 @@
 package factory.rules;
-import rule.Rule;
+import rule.classic.ClassicRule;
+
 import java.util.List;
 
 public interface RulesFactory {
-    public List<Rule> factory(String ruleString);
+    public List<ClassicRule> factory(String ruleString);
 }

@@ -2,8 +2,8 @@ package game;
 
 import board.*;
 import cell.ClassicCell;
-import rule.*;
 import observer.GameObserver;
+import rule.classic.ClassicRule;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,8 +13,8 @@ public class Game {
     private Board board;
     private List<GameObserver> observers = new ArrayList<>();
 
-    public Game(int rows, int cols, List<Rule> rules) {
-        board = new ClassicBoard(rows, cols, rules);
+    public Game(int rows, int cols, List<ClassicRule> classicRules) {
+        board = new ClassicBoard(rows, cols, classicRules);
     }
     public Game(ClassicBoard board) {
         this.board = board;

@@ -3,12 +3,12 @@ package board;
 import cell.*;
 import java.util.List;
 
-import rule.Rule;
+import rule.classic.ClassicRule;
 
 public class ClassicBoard extends Board {
 
-    public ClassicBoard(int row, int column, List<Rule> rules) {
-        super(row, column, rules);
+    public ClassicBoard(int row, int column, List<ClassicRule> classicRules) {
+        super(row, column, classicRules);
     }
     public int getNeighbors(int row, int col) {
         if (!isValidPos(row, col))
@@ -29,14 +29,14 @@ public class ClassicBoard extends Board {
     }
 
     public ClassicBoard nextGeneration() {
-        ClassicBoard classicBoard = new ClassicBoard(rows, columns, rules);
+        ClassicBoard classicBoard = new ClassicBoard(rows, columns, classicRules);
         for(int row = 0; row < rows; row++) {
             for(int col = 0; col < columns; col++) {
-                for(Rule rule : rules) {
+                for(ClassicRule classicRule : classicRules) {
                     Cell actualClassicCell = getCell(row, col);
                     int neighboursCant = getNeighbors(row, col);
-                    if(rule.isTrue(actualClassicCell, neighboursCant)) {
-                        Cell newClassicCell = rule.execute();
+                    if(classicRule.isTrue(actualClassicCell, neighboursCant)) {
+                        Cell newClassicCell = classicRule.execute();
                         classicBoard.setCell(row, col, newClassicCell);
                         break;
                     } else {

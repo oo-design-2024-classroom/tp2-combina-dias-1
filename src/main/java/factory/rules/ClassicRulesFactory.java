@@ -1,12 +1,13 @@
 package factory.rules;
-import rule.*;
+import rule.classic.*;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
 
 public class ClassicRulesFactory implements RulesFactory {
-    public List<Rule> factory(String ruleString) {
-        List<Rule> rules = new ArrayList<>();
+    public List<ClassicRule> factory(String ruleString) {
+        List<ClassicRule> classicRules = new ArrayList<>();
         String[] rulesSeparated = ruleString.split("/");
         if (rulesSeparated.length != 2)
             throw new IllegalArgumentException("Invalid input: " + ruleString);
@@ -31,11 +32,11 @@ public class ClassicRulesFactory implements RulesFactory {
         int stayAliveMax = Collections.max(amountNeighboursToCheckStayAlive);
         amountNeighboursToCheckDieOverpopulation.add(stayAliveMax);
 
-        rules.add(new RuleBornClassic(amountNeighboursToCheckBorn));
-        rules.add(new RuleDieOverpopulationClassic(amountNeighboursToCheckDieOverpopulation));
-        rules.add(new RuleDieUnderpopulationClassic(amountNeighboursToCheckDieUnderpopulation));
-        rules.add(new RuleStayAliveClassic(amountNeighboursToCheckStayAlive));
-        return rules;
+        classicRules.add(new ClassicRuleBornClassic(amountNeighboursToCheckBorn));
+        classicRules.add(new ClassicRuleDieOverpopulationClassic(amountNeighboursToCheckDieOverpopulation));
+        classicRules.add(new ClassicRuleDieUnderpopulationClassic(amountNeighboursToCheckDieUnderpopulation));
+        classicRules.add(new ClassicRuleStayAliveClassic(amountNeighboursToCheckStayAlive));
+        return classicRules;
     }
 
     private static List<Integer> numberOfNeighboursToCheck(String rule) {
