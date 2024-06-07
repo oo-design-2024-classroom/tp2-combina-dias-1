@@ -1,14 +1,13 @@
-package factory;
+package factory.board;
 
-import board.ClassicBoard;
-import factory.cell.CellFactory;
-import rule.Rule;
-
+import board.*;
+import factory.cell.*;
+import rule.*;
 import java.util.List;
 
-public class BoardFactory {
-    public ClassicBoard factory(int rows, int columns, String board, List<Rule> rules) {
-        CellFactory cellFactory = new CellFactory();
+public class ClassicBoardFactory implements BoardFactory {
+    public Board factory(int rows, int columns, String board, List<Rule> rules) {
+        CellFactory cellFactory = new ClassicCellFactory();
         if(!checkValidStringBoard(board))
             throw new IllegalArgumentException("Invalid board");
         if(getRows(board) != rows || getColumns(board) != columns)

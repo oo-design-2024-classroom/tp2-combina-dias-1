@@ -1,10 +1,10 @@
-package factory;
+package factory.rules;
 import rule.*;
 import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
 
-public class RulesFactory {
+public class ClassicRulesFactory implements RulesFactory {
     public List<Rule> factory(String ruleString) {
         List<Rule> rules = new ArrayList<>();
         String[] rulesSeparated = ruleString.split("/");

@@ -1,8 +1,8 @@
 package game;
 
 import board.ClassicBoard;
-import factory.BoardFactory;
-import factory.RulesFactory;
+import factory.board.ClassicBoardFactory;
+import factory.rules.ClassicRulesFactory;
 import observer.ConsoleOutput;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,19 +14,19 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class TestGame {
-    RulesFactory rulesFactory;
+    ClassicRulesFactory classicRulesFactory;
     List<Rule> rules;
 
     @BeforeEach
     public void setUp(){
-        rulesFactory = new RulesFactory();
-        rules = rulesFactory.factory("B3/S23");
+        classicRulesFactory = new ClassicRulesFactory();
+        rules = classicRulesFactory.factory("B3/S23");
     }
     @Test
     public void testThreeTurns() throws InterruptedException {
-        BoardFactory boardFactory = new BoardFactory();
+        ClassicBoardFactory classicBoardFactory = new ClassicBoardFactory();
         String boardStr = "XOX\nXOX\nXOX";
-        ClassicBoard classicBoard = boardFactory.factory(3,3,boardStr, rules);
+        ClassicBoard classicBoard = classicBoardFactory.factory(3,3,boardStr, rules);
         Game game = new Game(classicBoard);
         ConsoleOutput output = new ConsoleOutput();
         game.addObserver(output);

@@ -1,5 +1,6 @@
 package board;
 
+import cell.Cell;
 import cell.ClassicCell;
 import rule.Rule;
 
@@ -7,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public abstract class Board {
-    ClassicCell[][] classicCells;
+    Cell[][] classicCells;
     List<Rule> rules;
     int rows;
     int columns;
@@ -27,10 +28,10 @@ public abstract class Board {
         this.classicCells = classicCells;
         this.rules = rules;
     }
-    public ClassicCell getCell(int row, int col) {
+    public Cell getCell(int row, int col) {
         return classicCells[row][col];
     }
-    public void setCell(int row, int col, ClassicCell classicCell) {
+    public void setCell(int row, int col, Cell classicCell) {
         classicCells[row][col] = classicCell;
     }
 
@@ -50,7 +51,7 @@ public abstract class Board {
         if (this == o) return true;
         if(o == null)
             return false;
-        if(o instanceof ClassicBoard classicBoard) {
+        if(o instanceof Board classicBoard) {
             if(rows != classicBoard.rows || columns != classicBoard.columns)
                 return false;
             return Arrays.deepEquals(classicCells, classicBoard.classicCells);

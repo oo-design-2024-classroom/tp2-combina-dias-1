@@ -1,32 +1,31 @@
 package rule;
 import cell.*;
 import factory.cell.CellFactory;
-import game.GameType;
 
 import java.util.List;
 import java.util.Objects;
 
 public class RuleBornDifferentColor extends Rule {
-    public RuleBornDifferentColor(List<Integer> neighborsToCheck, CellFactory cellFactory) {
-        super(neighborsToCheck, cellFactory);
+    public RuleBornDifferentColor(List<Integer> neighborsToCheck) {
+        super(neighborsToCheck);
         if(neighborsToCheck.size() != 3) {
             throw new IllegalArgumentException("Illegal number of neighbors to check");
         }
     }
-    public boolean isTrue(ClassicCell classicCell, int neighbours) {
+    public boolean isTrue(Cell classicCell, int neighbours) {
         return !Objects.equals(neighboursToCheck.get(0), neighboursToCheck.get(1)) && !Objects.equals(neighboursToCheck.get(1), neighboursToCheck.get(2));
     }
     public Cell execute() {
         int missingColor = 6;
         missingColor -= neighboursToCheck.get(0) + neighboursToCheck.get(1) + neighboursToCheck.get(2);
         if(missingColor == 0)
-            return cellFactory.factory('R'); //TODO: CAMBIAR CUANDO CAMBIEMOS CELL FACTORY
+            return new QuadlifeCell(CellType.RED);
         else if (missingColor == 1)
-            return cellFactory.factory('B');
+            return new QuadlifeCell(CellType.BLUE); //CAMBIAR TODO
         else if (missingColor == 2)
-            return cellFactory.factory('Y');
+            return new QuadlifeCell(CellType.YELLOW);
         else if (missingColor == 3)
-            return cellFactory.factory('G');
+            return new QuadlifeCell(CellType.GREEN);
         else
             throw new IllegalArgumentException("Illegal color");
     }

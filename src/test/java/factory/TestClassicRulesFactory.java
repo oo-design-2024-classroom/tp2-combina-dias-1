@@ -1,4 +1,5 @@
 package factory;
+import factory.rules.ClassicRulesFactory;
 import org.junit.jupiter.api.Test;
 import rule.Rule;
 
@@ -8,11 +9,11 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class TestRulesFactory {
+public class TestClassicRulesFactory {
     @Test
     public void testRules() {
-        RulesFactory rulesFactory = new RulesFactory();
-        List<Rule> rules = rulesFactory.factory("B2/S23");
+        ClassicRulesFactory classicRulesFactory = new ClassicRulesFactory();
+        List<Rule> rules = classicRulesFactory.factory("B2/S23");
         List<Integer> tempList = new ArrayList<>();
         tempList.add(2);
         assertThat(rules.get(0).getNeighboursToCheck()).isEqualTo(tempList);
@@ -23,10 +24,10 @@ public class TestRulesFactory {
     }
      @Test
     public void testInvalidRules() {
-         RulesFactory rulesFactory = new RulesFactory();
+         ClassicRulesFactory classicRulesFactory = new ClassicRulesFactory();
          IllegalArgumentException  exception = assertThrows(IllegalArgumentException.class,
                  () -> {
-                     List<Rule> rules = rulesFactory.factory("2S23");
+                     List<Rule> rules = classicRulesFactory.factory("2S23");
 
                  });
          assertThat(exception.getMessage().equals("Illegal rule"));

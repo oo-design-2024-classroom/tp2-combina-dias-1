@@ -1,7 +1,7 @@
 package board;
 
-import factory.BoardFactory;
-import factory.RulesFactory;
+import factory.board.ClassicBoardFactory;
+import factory.rules.ClassicRulesFactory;
 import org.junit.jupiter.api.BeforeEach;
 
 import org.junit.jupiter.api.Test;
@@ -19,9 +19,9 @@ public class TestClassicBoard {
 
     @BeforeEach
     public void setUp(){
-        RulesFactory rulesFactory = new RulesFactory();
-        BoardFactory boardFactory = new BoardFactory();
-        rules = rulesFactory.factory("B3/S23");
+        ClassicRulesFactory classicRulesFactory = new ClassicRulesFactory();
+        ClassicBoardFactory classicBoardFactory = new ClassicBoardFactory();
+        rules = classicRulesFactory.factory("B3/S23");
     }
 
     @Test
@@ -33,39 +33,39 @@ public class TestClassicBoard {
     }
     @Test
     public void testNoNeighbours() {
-        BoardFactory boardFactory = new BoardFactory();
-        RulesFactory rulesFactory = new RulesFactory();
-        rules = rulesFactory.factory("B3/S23");
-        classicBoard = boardFactory.factory(3,3,"XXX\nXXX\nXXX", rules);
+        ClassicBoardFactory classicBoardFactory = new ClassicBoardFactory();
+        ClassicRulesFactory classicRulesFactory = new ClassicRulesFactory();
+        rules = classicRulesFactory.factory("B3/S23");
+        classicBoard = classicBoardFactory.factory(3,3,"XXX\nXXX\nXXX", rules);
 
         assertThat(classicBoard.getNeighbors(1,1)).isEqualTo(0);
     }
     @Test
     public void testNeighbours() {
-        BoardFactory boardFactory = new BoardFactory();
-        RulesFactory rulesFactory = new RulesFactory();
-        rules = rulesFactory.factory("B3/S23");
-        classicBoard = boardFactory.factory(3,3,"XXX\nOXO\nXOX", rules);
+        ClassicBoardFactory classicBoardFactory = new ClassicBoardFactory();
+        ClassicRulesFactory classicRulesFactory = new ClassicRulesFactory();
+        rules = classicRulesFactory.factory("B3/S23");
+        classicBoard = classicBoardFactory.factory(3,3,"XXX\nOXO\nXOX", rules);
         assertThat(classicBoard.getNeighbors(1,1)).isEqualTo(3);
     }
     @Test
     public void checkGeneration() {
-        BoardFactory boardFactory = new BoardFactory();
-        RulesFactory rulesFactory = new RulesFactory();
-        rules = rulesFactory.factory("B3/S23");
-        classicBoard = boardFactory.factory(5,5,"XXXXX\nXXOXX\nXXOXX\nXXOXX\nXXXXX", rules);
+        ClassicBoardFactory classicBoardFactory = new ClassicBoardFactory();
+        ClassicRulesFactory classicRulesFactory = new ClassicRulesFactory();
+        rules = classicRulesFactory.factory("B3/S23");
+        classicBoard = classicBoardFactory.factory(5,5,"XXXXX\nXXOXX\nXXOXX\nXXOXX\nXXXXX", rules);
         ClassicBoard newClassicBoard = classicBoard.nextGeneration();
 
-        ClassicBoard expected = boardFactory.factory(5,5,"XXXXX\nXXXXX\nXOOOX\nXXXXX\nXXXXX", rules);
+        ClassicBoard expected = classicBoardFactory.factory(5,5,"XXXXX\nXXXXX\nXOOOX\nXXXXX\nXXXXX", rules);
 
         assertThat(newClassicBoard).isEqualTo(expected);
     }
     @Test
     public void testGenerationCycle() {
-        BoardFactory boardFactory = new BoardFactory();
-        RulesFactory rulesFactory = new RulesFactory();
-        rules = rulesFactory.factory("B3/S23");
-        classicBoard = boardFactory.factory(5,5,"XXXXX\nXXOXX\nXXOXX\nXXOXX\nXXXXX", rules);
+        ClassicBoardFactory classicBoardFactory = new ClassicBoardFactory();
+        ClassicRulesFactory classicRulesFactory = new ClassicRulesFactory();
+        rules = classicRulesFactory.factory("B3/S23");
+        classicBoard = classicBoardFactory.factory(5,5,"XXXXX\nXXOXX\nXXOXX\nXXOXX\nXXXXX", rules);
         ClassicBoard newClassicBoard = classicBoard.nextGeneration();
         newClassicBoard = newClassicBoard.nextGeneration();
         assertThat(newClassicBoard).isEqualTo(classicBoard);
@@ -89,13 +89,13 @@ public class TestClassicBoard {
     @Test
     void testValidStringBoard(){
         String board = "XXX\nXXX\nOOO\n";
-        BoardFactory boardFactory = new BoardFactory();
-        assertThat(boardFactory.checkValidStringBoard(board)).isTrue();
+        ClassicBoardFactory classicBoardFactory = new ClassicBoardFactory();
+        assertThat(classicBoardFactory.checkValidStringBoard(board)).isTrue();
     }
     @Test
     void testInvalidStringBoard(){
         String board = "XXX\nOO\nXXX";
-        BoardFactory boardFactory = new BoardFactory();
-        assertThat(boardFactory.checkValidStringBoard(board)).isFalse();
+        ClassicBoardFactory classicBoardFactory = new ClassicBoardFactory();
+        assertThat(classicBoardFactory.checkValidStringBoard(board)).isFalse();
     }
 }

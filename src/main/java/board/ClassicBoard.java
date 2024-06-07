@@ -1,6 +1,6 @@
 package board;
 
-import cell.ClassicCell;
+import cell.*;
 import java.util.List;
 
 import rule.Rule;
@@ -33,10 +33,10 @@ public class ClassicBoard extends Board {
         for(int row = 0; row < rows; row++) {
             for(int col = 0; col < columns; col++) {
                 for(Rule rule : rules) {
-                    ClassicCell actualClassicCell = getCell(row, col);
+                    Cell actualClassicCell = getCell(row, col);
                     int neighboursCant = getNeighbors(row, col);
                     if(rule.isTrue(actualClassicCell, neighboursCant)) {
-                        ClassicCell newClassicCell = rule.execute();
+                        Cell newClassicCell = rule.execute();
                         classicBoard.setCell(row, col, newClassicCell);
                         break;
                     } else {
