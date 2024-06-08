@@ -15,6 +15,9 @@ public class QuadlifeCell implements Cell {
             return type == otherCell.type;
         return false;
     }
+    public CellType getCellType() {
+        return type;
+    }
     public String toString() {
         if(type == CellType.DEAD)
             return "X";

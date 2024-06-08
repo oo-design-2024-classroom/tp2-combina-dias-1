@@ -16,6 +16,9 @@ public class ClassicCell implements Cell {
             return type == otherClassicCell.type;
         return false;
     }
+    public CellType getCellType() {
+        return type;
+    }
     public String toString() {
         if(type == CellType.ALIVE)
             return "O";

@@ -38,7 +38,7 @@ public class TestClassicBoard {
         classicRules = classicRulesFactory.factory("B3/S23");
         classicBoard = classicBoardFactory.factory(3,3,"XXX\nXXX\nXXX", classicRules);
 
-        assertThat(classicBoard.getNeighbors(1,1)).isEqualTo(0);
+        assertThat(classicBoard.getAliveNeighborsCant(1,1)).isEqualTo(0);
     }
     @Test
     public void testNeighbours() {
@@ -46,7 +46,7 @@ public class TestClassicBoard {
         ClassicRulesFactory classicRulesFactory = new ClassicRulesFactory();
         classicRules = classicRulesFactory.factory("B3/S23");
         classicBoard = classicBoardFactory.factory(3,3,"XXX\nOXO\nXOX", classicRules);
-        assertThat(classicBoard.getNeighbors(1,1)).isEqualTo(3);
+        assertThat(classicBoard.getAliveNeighborsCant(1,1)).isEqualTo(3);
     }
     @Test
     public void checkGeneration() {

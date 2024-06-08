@@ -1,28 +1,31 @@
 package cell;
 
 public class StarWarsCell implements Cell {
-    private final CellType state;
-    public StarWarsCell(CellType state) {
-        this.state = state;
+    private final CellType type;
+    public StarWarsCell(CellType type) {
+        this.type = type;
     }
 
     public boolean isAlive() {
-        return state != CellType.DEAD;
+        return type != CellType.DEAD;
     }
 
     public boolean equals(Object other) {
         if (other instanceof StarWarsCell otherCell)
-            return state.equals(otherCell.state);
+            return type.equals(otherCell.type);
         return false;
     }
+    public CellType getCellType() {
+        return type;
+    }
     public String toString() {
-        if(state == CellType.DEAD)
+        if(type == CellType.DEAD)
             return "X";
-        if(state == CellType.ALIVE)
+        if(type == CellType.ALIVE)
             return "1";
-        if(state == CellType.GENERIC_STATE_2)
+        if(type == CellType.GENERIC_STATE_2)
             return "2";
-        if(state == CellType.ALMOST_DEAD)
+        if(type == CellType.ALMOST_DEAD)
             return "3";
         throw new IllegalArgumentException("illegal cell");
     }
