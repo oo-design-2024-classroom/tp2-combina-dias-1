@@ -1,7 +1,7 @@
 package board;
 
 import factory.board.ClassicBoardFactory;
-import factory.rules.ClassicRulesFactory;
+import factory.rules.RulesFactory;
 import org.junit.jupiter.api.BeforeEach;
 
 import org.junit.jupiter.api.Test;
@@ -19,9 +19,9 @@ public class TestClassicBoard {
 
     @BeforeEach
     public void setUp(){
-        ClassicRulesFactory classicRulesFactory = new ClassicRulesFactory();
+        RulesFactory rulesFactory = new RulesFactory();
         ClassicBoardFactory classicBoardFactory = new ClassicBoardFactory();
-        classicRules = classicRulesFactory.factory("B3/S23");
+        classicRules = rulesFactory.factory("B3/S23");
     }
 
     @Test
@@ -34,8 +34,8 @@ public class TestClassicBoard {
     @Test
     public void testNoNeighbours() {
         ClassicBoardFactory classicBoardFactory = new ClassicBoardFactory();
-        ClassicRulesFactory classicRulesFactory = new ClassicRulesFactory();
-        classicRules = classicRulesFactory.factory("B3/S23");
+        RulesFactory rulesFactory = new RulesFactory();
+        classicRules = rulesFactory.factory("B3/S23");
         classicBoard = classicBoardFactory.factory(3,3,"XXX\nXXX\nXXX", classicRules);
 
         assertThat(classicBoard.getAliveNeighborsCant(1,1)).isEqualTo(0);
@@ -43,16 +43,16 @@ public class TestClassicBoard {
     @Test
     public void testNeighbours() {
         ClassicBoardFactory classicBoardFactory = new ClassicBoardFactory();
-        ClassicRulesFactory classicRulesFactory = new ClassicRulesFactory();
-        classicRules = classicRulesFactory.factory("B3/S23");
+        RulesFactory rulesFactory = new RulesFactory();
+        classicRules = rulesFactory.factory("B3/S23");
         classicBoard = classicBoardFactory.factory(3,3,"XXX\nOXO\nXOX", classicRules);
         assertThat(classicBoard.getAliveNeighborsCant(1,1)).isEqualTo(3);
     }
     @Test
     public void checkGeneration() {
         ClassicBoardFactory classicBoardFactory = new ClassicBoardFactory();
-        ClassicRulesFactory classicRulesFactory = new ClassicRulesFactory();
-        classicRules = classicRulesFactory.factory("B3/S23");
+        RulesFactory rulesFactory = new RulesFactory();
+        classicRules = rulesFactory.factory("B3/S23");
         classicBoard = classicBoardFactory.factory(5,5,"XXXXX\nXXOXX\nXXOXX\nXXOXX\nXXXXX", classicRules);
         ClassicBoard newClassicBoard = classicBoard.nextGeneration();
 
@@ -63,8 +63,8 @@ public class TestClassicBoard {
     @Test
     public void testGenerationCycle() {
         ClassicBoardFactory classicBoardFactory = new ClassicBoardFactory();
-        ClassicRulesFactory classicRulesFactory = new ClassicRulesFactory();
-        classicRules = classicRulesFactory.factory("B3/S23");
+        RulesFactory rulesFactory = new RulesFactory();
+        classicRules = rulesFactory.factory("B3/S23");
         classicBoard = classicBoardFactory.factory(5,5,"XXXXX\nXXOXX\nXXOXX\nXXOXX\nXXXXX", classicRules);
         ClassicBoard newClassicBoard = classicBoard.nextGeneration();
         newClassicBoard = newClassicBoard.nextGeneration();

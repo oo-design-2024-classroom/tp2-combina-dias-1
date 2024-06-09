@@ -5,7 +5,8 @@ public enum CellType {
     YELLOW,
     GREEN,
     ALIVE,
-    GENERIC_STATE_2,
+    STATE2,
+    STATE3,
     ALMOST_DEAD,
     DEAD;
 }

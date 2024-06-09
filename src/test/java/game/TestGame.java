@@ -2,7 +2,7 @@ package game;
 
 import board.ClassicBoard;
 import factory.board.ClassicBoardFactory;
-import factory.rules.ClassicRulesFactory;
+import factory.rules.RulesFactory;
 import observer.ConsoleOutput;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,13 +15,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class TestGame {
-    ClassicRulesFactory classicRulesFactory;
+    RulesFactory rulesFactory;
     List<ClassicRule> classicRules;
 
     @BeforeEach
     public void setUp(){
-        classicRulesFactory = new ClassicRulesFactory();
-        classicRules = classicRulesFactory.factory("B3/S23");
+        rulesFactory = new RulesFactory();
+        classicRules = rulesFactory.factory("B3/S23");
     }
     @Test
     public void testThreeTurns() throws InterruptedException {

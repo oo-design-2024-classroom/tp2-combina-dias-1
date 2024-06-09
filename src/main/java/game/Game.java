@@ -30,7 +30,7 @@ public class Game {
             observer.update(board);
         }
     }
-    public void play(int cantGenerations) throws InterruptedException {
+    public void play() throws InterruptedException {
         for (int i = 0; i < cantGenerations; i++) {
             this.board = board.nextGeneration();
             notifyObservers();

@@ -21,7 +21,7 @@ public class BriansBrainCell implements Cell {
             return "0";
         if(type == CellType.ALIVE)
             return "1";
-        if(type == CellType.GENERIC_STATE_2)
+        if(type == CellType.STATE2)
             return "2";
         return "Y";
     }
