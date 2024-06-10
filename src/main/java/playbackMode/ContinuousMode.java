@@ -1,9 +1,11 @@
 package playbackMode;
 import board.Board;
 import display.GameDisplay;
+
+import java.io.IOException;
 import java.util.List;
 
-public class ContinuousMode implements PlaybackMode{
+public class ContinuousMode implements GameController {
     Board board;
     List<GameDisplay> displays;
     float sleepTime;
@@ -15,7 +17,7 @@ public class ContinuousMode implements PlaybackMode{
     }
 
     @Override
-    public void reproduce() throws InterruptedException {
+    public void reproduce() throws InterruptedException, IOException {
         while (true){
             for(GameDisplay display: displays){
                 display.update(board);

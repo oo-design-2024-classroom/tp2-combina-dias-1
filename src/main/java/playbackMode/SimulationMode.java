@@ -5,7 +5,7 @@ import display.GameDisplay;
 import java.io.IOException;
 import java.util.List;
 
-public class SimulationMode implements PlaybackMode{
+public class SimulationMode implements GameController {
     Board board;
     List<GameDisplay> displays;
 

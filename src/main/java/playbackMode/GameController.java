@@ -2,6 +2,6 @@ package playbackMode;
 
 import java.io.IOException;
 
-public interface PlaybackMode {
+public interface GameController {
     void reproduce() throws IOException, InterruptedException;
 }

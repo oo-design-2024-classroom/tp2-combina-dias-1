@@ -1,16 +1,20 @@
 package factory.board;
 
-import board.*;
-import factory.cell.*;
+import board.Board;
+import board.ClassicBoard;
+import factory.cell.CellFactory;
+import factory.cell.ClassicCellFactory;
+import factory.cell.ImmigrationCellFactory;
 import rule.Rule;
+
 import java.util.List;
 
-public class ClassicBoardFactory implements BoardFactory {
-    public Board factory(int rows, int columns, String boardString, List<Rule> rules) {
-        CellFactory cellFactory = new ClassicCellFactory();
-        if(!checkValidStringBoard(boardString))
+public class ImmigrationBoardFactory implements BoardFactory {
+    public Board factory(int rows, int columns, String board, List<Rule> rules) {
+        CellFactory cellFactory = new ImmigrationCellFactory();
+        if(!checkValidStringBoard(board))
             throw new IllegalArgumentException("Invalid board");
-        if(getRows(boardString) != rows || getColumns(boardString) != columns)
+        if(getRows(board) != rows || getColumns(board) != columns)
             throw new IllegalArgumentException("Invalid board");
         ClassicBoard newClassicBoard = new ClassicBoard(rows, columns, rules);
         int actualRow = 0;

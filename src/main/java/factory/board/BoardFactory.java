@@ -1,11 +1,9 @@
 package factory.board;
 
 import board.*;
-import rule.classic.ClassicRule;
-
+import rule.Rule;
 import java.util.List;
 
 public interface BoardFactory {
-    public Board factory(int rows, int columns, String board, List<ClassicRule> classicRules);
-    public boolean checkValidStringBoard(String board);
+    public Board factory(int rows, int columns, String board, List<Rule> rules);
 }
