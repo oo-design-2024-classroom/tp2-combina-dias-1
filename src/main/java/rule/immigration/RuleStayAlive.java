@@ -1,14 +1,16 @@
 package rule.immigration;
 
 import board.Board;
-import cell.Cell;
+import cell.ICell;
 import cell.CellType;
-import cell.ImmigrationCell;
+import rule.Rule;
 
-public class RuleStayAlive extends RuleImmigration{
-    Cell cell;
+import java.util.Map;
+
+public class RuleStayAlive implements Rule {
+    ICell cell;
     @Override
-    public Cell apply() {
+    public ICell apply() {
         if (cell == null) throw new IllegalStateException("Rule not checked if applicable before applying it.");
         return cell;
     }
@@ -16,9 +18,10 @@ public class RuleStayAlive extends RuleImmigration{
     @Override
     public boolean isApplicable(Board board, int row, int column) {
         cell = board.getCell(row, column);
-        if (cell.getCellType() == CellType.DEAD) {
-            int liveNeighbours = countAliveNeighbours(board.getAllNeighbors(row, column));
-            return liveNeighbours==2 || liveNeighbours==3;
+        if (cell.type() == CellType.DEAD) {
+            Map<CellType,Integer> neighbours = board.countNeighboursTypes(row,column);
+            int aliveNeighbours = neighbours.get(CellType.RED) + neighbours.get(CellType.BLUE);
+            return aliveNeighbours==2 || aliveNeighbours==3;
         }
         return false;
     }

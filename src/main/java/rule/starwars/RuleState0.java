@@ -1,23 +1,24 @@
 package rule.starwars;
 import board.Board;
-import cell.Cell;
+import cell.ICell;
 import cell.CellType;
-import cell.StarWarsCell;
+import cell.Cell;
 import java.util.List;
+import java.util.Map;
 
 public class RuleState0 extends StarWarsRule{
     @Override
-    public Cell apply() {
-        return new StarWarsCell(CellType.DEAD);
+    public ICell apply() {
+        return new Cell(CellType.DEAD);
     }
 
     @Override
     public boolean isApplicable(Board board, int row, int column) {
-        StarWarsCell cell = (StarWarsCell) board.getCell(row, column);
-        List<Cell> neighbours = board.getAllNeighbors(row, column);
-        int state1Neighbours = countState1Neighbours(neighbours);
-        if (cell.isState0() && state1Neighbours != 2) return true;
-        if (cell.isState3()) return true;
+        Cell cell = (Cell) board.getCell(row, column);
+        Map<CellType,Integer> neighbours = board.countNeighboursTypes(row,column);
+        int state1Neighbours = neighbours.get(CellType.ALIVE);
+        if (cell.type() == CellType.DEAD && state1Neighbours != 2) return true;
+        if (cell.type() == CellType.ALMOST_DEAD) return true;
         return false;
     }
 }

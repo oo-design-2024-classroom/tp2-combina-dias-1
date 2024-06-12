@@ -1,19 +1,19 @@
 package factory.cell;
 
-import cell.Cell;
+import cell.ICell;
 import cell.CellType;
-import cell.StarWarsCell;
+import cell.Cell;
 
 public class StarWarCellFactory implements CellFactory {
-    public Cell factory(char cellType) {
+    public ICell factory(char cellType) {
         if(cellType == '0')
-            return new StarWarsCell(CellType.DEAD);
+            return new Cell(CellType.DEAD);
         else if (cellType == '1')
-            return new StarWarsCell(CellType.ALIVE);
+            return new Cell(CellType.ALIVE);
         else if (cellType == '2')
-            return new StarWarsCell(CellType.GENERIC_STATE_2);
+            return new Cell(CellType.STATE2);
         else if (cellType == '3')
-            return new StarWarsCell(CellType.ALMOST_DEAD);
+            return new Cell(CellType.STATE3);
         throw new IllegalArgumentException("Invalid cell type: " + cellType);
     }
 }

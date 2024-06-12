@@ -1,23 +1,24 @@
 package rule.briansBrain;
 
 import board.Board;
-import cell.BriansBrainCell;
 import cell.Cell;
+import cell.ICell;
 import cell.CellType;
+import rule.Rule;
 
-import java.util.List;
+import java.util.Map;
 
-public class RuleAlive extends BBRule {
+public class RuleAlive implements Rule {
     @Override
-    public Cell apply() {
-        return new BriansBrainCell(CellType.ALIVE);
+    public ICell apply() {
+        return new Cell(CellType.ALIVE);
     }
 
     @Override
     public boolean isApplicable(Board board, int row, int column) {
-        Cell cell = board.getCell(row,column);
-        List<Cell> neighbours = board.getAllNeighbors(row,column);
-        int aliveNeighbours = countAliveNeighbours(neighbours);
-        return !cell.isAlive() && aliveNeighbours == 2;
+        ICell cell = board.getCell(row,column);
+        Map<CellType,Integer> neighbours = board.countNeighboursTypes(row,column);
+        int aliveNeighbours = neighbours.get(CellType.ALIVE);
+        return cell.type() != CellType.ALIVE  && aliveNeighbours == 2;
     }
 }

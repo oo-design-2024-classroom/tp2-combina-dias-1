@@ -3,10 +3,8 @@ package factory.rules;
 import rule.Rule;
 import rule.briansBrain.*;
 import rule.classic.*;
-import rule.immigration.RuleBornBlue;
-import rule.immigration.RuleBornRed;
+import rule.immigration.RuleBorn;
 import rule.immigration.RuleStayAlive;
-import rule.quadlife.RuleBorn;
 import rule.starwars.RuleState0;
 import rule.starwars.RuleState1;
 import rule.starwars.RuleState2;
@@ -36,13 +34,13 @@ public class RulesFactory implements IRulesFactory {
                 rules.add(new RuleState3());
                 return rules;
             case "immigration":
-                rules.add(new RuleBornBlue());
+                rules.add(new RuleBorn());
                 rules.add(new RuleBornRed());
                 rules.add(new rule.immigration.RuleDead());
                 rules.add(new RuleStayAlive());
                 return rules;
             case "quadlife":
-                rules.add(new RuleBorn());
+                rules.add(new rule.quadlife.RuleBorn());
                 rules.add(new rule.quadlife.RuleDead());
                 rules.add(new rule.quadlife.RuleStayAlive());
                 return rules;

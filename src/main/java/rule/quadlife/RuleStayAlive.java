@@ -1,12 +1,15 @@
 package rule.quadlife;
 
 import board.Board;
-import cell.Cell;
+import cell.CellType;
+import cell.ICell;
+
+import java.util.Map;
 
 public class RuleStayAlive extends QuadlifeRule {
-    Cell cell;
+    ICell cell;
     @Override
-    public Cell apply() {
+    public ICell apply() {
         if (cell == null) throw new IllegalStateException("Rule not checked if applicable before applying it.");
         return cell;
     }
@@ -14,7 +17,8 @@ public class RuleStayAlive extends QuadlifeRule {
     @Override
     public boolean isApplicable(Board board, int row, int column) {
         cell = board.getCell(row, column);
-        int aliveNeighbours = countAliveNeighbours(board.getAllNeighbors(row, column));
-        return cell.isAlive() && (aliveNeighbours == 2 || aliveNeighbours == 3);
+        Map<CellType,Integer> neighbours = board.countNeighboursTypes(row,column);
+        int aliveNeighbours = neighbours.get(CellType.RED) + neighbours.get(CellType.GREEN) + neighbours.get(CellType.BLUE) + neighbours.get(CellType.YELLOW);
+        return cell.type() != CellType.DEAD && (aliveNeighbours == 2 || aliveNeighbours == 3);
     }
 }

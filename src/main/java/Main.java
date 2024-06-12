@@ -1,4 +1,4 @@
-import factory.game.GameFactory;
+import factory.game.GameCreator;
 import playbackMode.GameController;
 
 import java.io.FileInputStream;
@@ -26,7 +26,7 @@ public class Main {
         String colsString = getProperty(properties, "COLS");
         int rows = Integer.parseInt(rowsString);
         int cols = Integer.parseInt(colsString);
-        return new GameFactory(variantString, playbackModeString, displayString, rows, cols, boardPositionsString).createController();
+        return GameCreator.getGame(variantString, playbackModeString, displayString, rows, cols, boardPositionsString);
     }
 
     public static Properties loadPropertiesFile(String configFileName) throws IOException {

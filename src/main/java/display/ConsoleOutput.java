@@ -1,7 +1,7 @@
 package display;
 import board.Board;
 
-public class ConsoleOutput implements GameDisplay { ;
+public class ConsoleOutput implements GameDisplay {
     public void update(Board board) {
         show(board.toString());
     }

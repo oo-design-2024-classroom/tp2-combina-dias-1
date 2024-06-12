@@ -3,17 +3,17 @@ package factory.cell;
 import cell.*;
 
 public class QuadlifeCellFactory implements CellFactory {
-    public Cell factory(char cellType) {
+    public ICell factory(char cellType) {
         if (cellType == 'X')
-            return new QuadlifeCell(CellType.DEAD);
+            return new Cell(CellType.DEAD);
         if (cellType == 'B')
-            return new QuadlifeCell(CellType.BLUE);
+            return new Cell(CellType.BLUE);
         if (cellType == 'R')
-            return new QuadlifeCell(CellType.RED);
+            return new Cell(CellType.RED);
         if (cellType == 'G')
-            return new QuadlifeCell(CellType.GREEN);
+            return new Cell(CellType.GREEN);
         if (cellType == 'Y')
-            return new QuadlifeCell(CellType.YELLOW);
+            return new Cell(CellType.YELLOW);
         throw new IllegalArgumentException("Invalid cell type: " + cellType);
     }
 }

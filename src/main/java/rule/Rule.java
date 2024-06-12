@@ -1,9 +1,9 @@
 package rule;
 
 import board.Board;
-import cell.Cell;
+import cell.ICell;
 
 public interface Rule {
-    Cell apply();
+    ICell apply();
     boolean isApplicable(Board board, int row, int column);
 }

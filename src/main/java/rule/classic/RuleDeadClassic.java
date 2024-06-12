@@ -2,23 +2,24 @@ package rule.classic;
 
 import board.Board;
 import cell.Cell;
+import cell.ICell;
 import cell.CellType;
-import cell.ClassicCell;
+import rule.Rule;
 
-import java.util.List;
+import java.util.Map;
 
-public class RuleDeadClassic extends ClassicRule {
+public class RuleDeadClassic implements Rule {
     @Override
-    public Cell apply() {
-        return new ClassicCell(CellType.DEAD);
+    public ICell apply() {
+        return new Cell(CellType.DEAD);
     }
 
     @Override
     public boolean isApplicable(Board board, int row, int column) {
-        Cell cell = board.getCell(row, column);
-        List<Cell> neighboursList = board.getAllNeighbors(row, column);
-        int aliveNeighbours = countAliveNeighbours(neighboursList);
-        if (cell.isAlive() && (aliveNeighbours < 2 || aliveNeighbours > 3)) return true;
+        ICell cell = board.getCell(row, column);
+        Map<CellType,Integer> neighbours = board.countNeighboursTypes(row,column);
+        int aliveNeighbours = neighbours.get(CellType.ALIVE);
+        if (cell.type() == CellType.ALIVE && (aliveNeighbours < 2 || aliveNeighbours > 3)) return true;
         return aliveNeighbours != 3;
     }
 }
