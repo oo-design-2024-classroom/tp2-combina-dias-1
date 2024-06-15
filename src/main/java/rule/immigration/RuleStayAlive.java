@@ -11,7 +11,8 @@ public class RuleStayAlive implements Rule {
     ICell cell;
     @Override
     public ICell apply() {
-        if (cell == null) throw new IllegalStateException("Rule not checked if applicable before applying it.");
+        if (cell == null)
+            throw new IllegalStateException("Rule not checked if applicable before applying it.");
         return cell;
     }
 
@@ -21,7 +22,7 @@ public class RuleStayAlive implements Rule {
         if (cell.type() == CellType.DEAD) {
             Map<CellType,Integer> neighbours = board.countNeighboursTypes(row,column);
             int aliveNeighbours = neighbours.get(CellType.RED) + neighbours.get(CellType.BLUE);
-            return aliveNeighbours==2 || aliveNeighbours==3;
+            return aliveNeighbours == 2 || aliveNeighbours == 3;
         }
         return false;
     }

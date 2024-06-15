@@ -19,6 +19,9 @@ public class RuleAlive implements Rule {
         ICell cell = board.getCell(row,column);
         Map<CellType,Integer> neighbours = board.countNeighboursTypes(row,column);
         int aliveNeighbours = neighbours.get(CellType.ALIVE);
-        return cell.type() != CellType.ALIVE  && aliveNeighbours == 2;
+        int almostDeadNeighbours = neighbours.get(CellType.ALMOST_DEAD);
+        if(cell.type() != CellType.DEAD)
+            return false;
+        return aliveNeighbours == 2 || (almostDeadNeighbours == 1 && aliveNeighbours == 3);
     }
 }

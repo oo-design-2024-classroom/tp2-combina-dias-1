@@ -4,22 +4,24 @@ import board.Board;
 import cell.ICell;
 import cell.CellType;
 import cell.Cell;
+import rule.Rule;
 
 import java.util.List;
+import java.util.Map;
 
-public class RuleState1 extends StarWarsRule{
-    @Override
+public class RuleState1 implements Rule {
+    ICell cell;
     public ICell apply() {
-        return new Cell(CellType.ALIVE);
+        if(cell == null)
+            throw new IllegalArgumentException("Illegal call");
+        return cell;
     }
 
-    @Override
     public boolean isApplicable(Board board, int row, int column) {
-        Cell cell = (Cell) board.getCell(row, column);
-        List<ICell> neighbours = board.getAllNeighbors(row, column);
-        int state1Neighbours = countState1Neighbours(neighbours);
-        if (cell.isState0() && state1Neighbours == 2) return true;
-        if (cell.isState1() && state1Neighbours >= 3 && state1Neighbours <= 5) return true;
-        return false;
+        cell = board.getCell(row, column);
+        if(cell.type() != CellType.DEAD)
+            return false;
+        Map<CellType, Integer> neighbours = board.countNeighboursTypes(row, column);
+        return neighbours.get(CellType.ALIVE) == 2;
     }
 }

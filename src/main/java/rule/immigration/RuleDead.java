@@ -21,8 +21,8 @@ public class RuleDead implements Rule {
         cell = board.getCell(row, column);
         Map<CellType,Integer> neighbours = board.countNeighboursTypes(row,column);
         int aliveNeighbours = neighbours.get(CellType.RED) + neighbours.get(CellType.BLUE);
-        if (cell.type() == CellType.DEAD && aliveNeighbours !=3) return true;
-        if (cell.type() != CellType.DEAD && aliveNeighbours <2 || aliveNeighbours >3) return true;
-        return false;
+        if (cell.type() == CellType.DEAD && aliveNeighbours != 3)
+            return true;
+        return cell.type() != CellType.DEAD && aliveNeighbours < 2 || aliveNeighbours > 3;
     }
 }
