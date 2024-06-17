@@ -36,8 +36,6 @@ public class Board {
                         board.setCell(row, col, newCell);
                         ruleApplied = true;
                         break;
-                    } else {
-                        board.setCell(row, col, new Cell(CellType.DEAD));
                     }
                 }
                 if (!ruleApplied) throw new IllegalStateException("no rule has been applied");
@@ -84,7 +82,7 @@ public class Board {
             for(int j = 0; j < columns; j++) {
                 output.append(getCell(i, j).toString());
             }
-            output.append("\n");
+            if(i != rows -1 )output.append("\n");
         }
         return output.toString();
     }
