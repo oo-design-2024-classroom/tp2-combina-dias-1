@@ -8,7 +8,7 @@ import rule.Rule;
 
 import java.util.Map;
 
-public class RuleAlive implements Rule {
+public class RuleAliveBB implements Rule {
     @Override
     public ICell apply() {
         return new Cell(CellType.ALIVE);

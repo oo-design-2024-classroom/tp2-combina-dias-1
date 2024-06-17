@@ -3,9 +3,9 @@ import board.*;
 import cell.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import rule.immigration.RuleBorn;
-import rule.immigration.RuleDead;
-import rule.immigration.RuleStayAlive;
+import rule.immigration.RuleBornImmigration;
+import rule.immigration.RuleDeadImmigration;
+import rule.immigration.RuleStayAliveImmigration;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,7 +24,7 @@ class TestImmigrationRules {
 
     @Test
     void testRuleBorn() {
-        RuleBorn rule = new RuleBorn();
+        RuleBornImmigration rule = new RuleBornImmigration();
         assertThrows(IllegalStateException.class, rule::apply, "Apply before isApplicable should throw");
 
         ICell deadCell = new Cell(CellType.DEAD);
@@ -48,7 +48,7 @@ class TestImmigrationRules {
 
     @Test
     void testRuleDead() {
-        RuleDead rule = new RuleDead();
+        RuleDeadImmigration rule = new RuleDeadImmigration();
 
         ICell aliveCell = new Cell(CellType.ALIVE);
         ICell deadCell = new Cell(CellType.DEAD);
@@ -75,7 +75,7 @@ class TestImmigrationRules {
 
     @Test
     void testRuleStayAlive() {
-        RuleStayAlive rule = new RuleStayAlive();
+        RuleStayAliveImmigration rule = new RuleStayAliveImmigration();
         assertThrows(IllegalStateException.class, rule::apply, "Apply before isApplicable should throw");
 
         ICell deadCell = new Cell(CellType.DEAD);

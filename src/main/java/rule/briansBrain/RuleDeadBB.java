@@ -8,7 +8,7 @@ import rule.Rule;
 
 import static cell.CellType.ALIVE;
 
-public class RuleDead implements Rule {
+public class RuleDeadBB implements Rule {
     @Override
     public ICell apply() {
         return new Cell(CellType.DEAD);

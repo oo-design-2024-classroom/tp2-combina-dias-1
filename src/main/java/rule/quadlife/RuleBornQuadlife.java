@@ -7,7 +7,7 @@ import cell.CellType;
 
 import java.util.Map;
 
-public class RuleBorn extends QuadlifeRule {
+public class RuleBornQuadlife extends QuadlifeRule {
     ICell cell;
     @Override
     public ICell apply() {

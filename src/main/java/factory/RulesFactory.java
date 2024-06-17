@@ -3,8 +3,12 @@ package factory;
 import rule.Rule;
 import rule.briansBrain.*;
 import rule.classic.*;
-import rule.immigration.RuleBorn;
-import rule.immigration.RuleStayAlive;
+import rule.immigration.RuleBornImmigration;
+import rule.immigration.RuleDeadImmigration;
+import rule.immigration.RuleStayAliveImmigration;
+import rule.quadlife.RuleBornQuadlife;
+import rule.quadlife.RuleDeadQuadlife;
+import rule.quadlife.RuleStayAliveQuadlife;
 import rule.starwars.RuleState0;
 import rule.starwars.RuleState1;
 import rule.starwars.RuleState2;
@@ -21,9 +25,9 @@ public class RulesFactory {
                 rules.add(new RuleDeadClassic());
                 return rules;
             case "briansBrain":
-                rules.add(new RuleAlive());
+                rules.add(new RuleAliveBB());
                 rules.add(new RuleSemiDead());
-                rules.add(new RuleDead());
+                rules.add(new RuleDeadBB());
                 return rules;
             case "starWars":
                 rules.add(new RuleState0());
@@ -31,14 +35,14 @@ public class RulesFactory {
                 rules.add(new RuleState2());
                 return rules;
             case "immigration":
-                rules.add(new RuleBorn());
-                rules.add(new RuleDead());
-                rules.add(new RuleStayAlive());
+                rules.add(new RuleBornImmigration());
+                rules.add(new RuleDeadImmigration());
+                rules.add(new RuleStayAliveImmigration());
                 return rules;
             case "quadlife":
-                rules.add(new rule.quadlife.RuleBorn());
-                rules.add(new rule.quadlife.RuleDead());
-                rules.add(new rule.quadlife.RuleStayAlive());
+                rules.add(new RuleBornQuadlife());
+                rules.add(new RuleDeadQuadlife());
+                rules.add(new RuleStayAliveQuadlife());
                 return rules;
             default:
                 throw new IllegalArgumentException("Invalid variant");

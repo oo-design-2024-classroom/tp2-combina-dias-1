@@ -7,7 +7,7 @@ import rule.Rule;
 
 import java.util.Map;
 
-public class RuleStayAlive implements Rule {
+public class RuleStayAliveImmigration implements Rule {
     ICell cell;
     @Override
     public ICell apply() {

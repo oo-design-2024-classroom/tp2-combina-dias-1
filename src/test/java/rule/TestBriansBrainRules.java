@@ -37,7 +37,7 @@ class TestBriansBrainRules {
 
     @Test
     void testRuleDead() {
-        RuleDead rule = new RuleDead();
+        RuleDeadBB rule = new RuleDeadBB();
         ICell deadCell = new Cell(CellType.DEAD);
         ICell almostDeadCell = new Cell(CellType.ALMOST_DEAD);
         ICell aliveCell = new Cell(CellType.ALIVE);
@@ -59,7 +59,7 @@ class TestBriansBrainRules {
 
     @Test
     void testRuleAlive() {
-        RuleAlive rule = new RuleAlive();
+        RuleAliveBB rule = new RuleAliveBB();
         ICell deadCell = new Cell(CellType.DEAD);
 
         when(board.getCell(0, 0)).thenReturn(deadCell);

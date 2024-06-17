@@ -6,10 +6,9 @@ import cell.ICell;
 import cell.CellType;
 import rule.Rule;
 
-import java.util.List;
 import java.util.Map;
 
-public class RuleDead implements Rule {
+public class RuleDeadImmigration implements Rule {
     ICell cell;
     @Override
     public ICell apply() {

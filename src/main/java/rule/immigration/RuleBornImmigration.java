@@ -8,7 +8,7 @@ import rule.Rule;
 
 import java.util.Map;
 
-public class RuleBorn implements Rule {
+public class RuleBornImmigration implements Rule {
     ICell cell;
     @Override
     public ICell apply() {
