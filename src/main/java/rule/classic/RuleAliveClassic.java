@@ -17,7 +17,6 @@ public class RuleAliveClassic implements Rule {
     @Override
     public boolean isApplicable(Board board, int row, int column) {
         ICell cell = board.getCell(row, column);
-        if (cell.type() != CellType.ALIVE) return false;
         Map<CellType,Integer> neighbours = board.countNeighboursTypes(row,column);
         int aliveNeighbours = neighbours.get(CellType.ALIVE);
         if (cell.type() == CellType.ALIVE && (aliveNeighbours == 2 || aliveNeighbours == 3)) return true;

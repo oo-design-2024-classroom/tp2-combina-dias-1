@@ -21,10 +21,9 @@ public class Cell implements ICell {
             case BLUE -> "B";
             case YELLOW -> "Y";
             case GREEN -> "G";
-            case ALIVE -> "A";
+            case ALIVE -> "O";
             case STATE2 -> "2";
-            case STATE3 -> "3";
-            case ALMOST_DEAD -> "D";
+            case ALMOST_DEAD -> "3";
             case DEAD -> "X";
             default -> throw new IllegalArgumentException("Unknown cell type: " + this);
         };

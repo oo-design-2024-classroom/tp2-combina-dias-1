@@ -16,6 +16,7 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation("org.assertj:assertj-core:3.25.1")
     testImplementation(files("libs/easymock-5.2.0.jar"))
+    testImplementation("org.mockito:mockito-core:2.1.0")
 }
 
 tasks.test {

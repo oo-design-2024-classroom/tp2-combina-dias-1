@@ -1,5 +1,6 @@
 package board;
 
+import cell.Cell;
 import cell.CellType;
 import cell.ICell;
 import rule.Rule;
@@ -26,15 +27,17 @@ public class Board {
 
     public Board nextGeneration() {
         Board board = new Board(rows, columns, rules);
+        boolean ruleApplied = false;
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < columns; col++) {
-                boolean ruleApplied = false;
                 for (Rule rule : rules) {
                     if (rule.isApplicable(this, row, col)) {
                         ICell newCell = rule.apply();
                         board.setCell(row, col, newCell);
                         ruleApplied = true;
                         break;
+                    } else {
+                        board.setCell(row, col, new Cell(CellType.DEAD));
                     }
                 }
                 if (!ruleApplied) throw new IllegalStateException("no rule has been applied");

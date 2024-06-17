@@ -19,7 +19,6 @@ public class RuleDeadClassic implements Rule {
         ICell cell = board.getCell(row, column);
         Map<CellType,Integer> neighbours = board.countNeighboursTypes(row,column);
         int aliveNeighbours = neighbours.get(CellType.ALIVE);
-        if (cell.type() == CellType.ALIVE && (aliveNeighbours < 2 || aliveNeighbours > 3)) return true;
-        return aliveNeighbours != 3;
+        return cell.type() == CellType.ALIVE && (aliveNeighbours < 2 || aliveNeighbours > 3);
     }
 }

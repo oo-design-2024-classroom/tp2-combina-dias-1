@@ -1,4 +1,4 @@
-package factory.rules;
+package factory;
 
 import rule.Rule;
 import rule.briansBrain.*;
@@ -8,13 +8,11 @@ import rule.immigration.RuleStayAlive;
 import rule.starwars.RuleState0;
 import rule.starwars.RuleState1;
 import rule.starwars.RuleState2;
-import rule.starwars.RuleState3;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RulesFactory implements IRulesFactory {
-    @Override
+public class RulesFactory {
     public List<Rule> factory(String variantString) {
         List<Rule> rules = new ArrayList<>();
         switch(variantString){
@@ -31,12 +29,10 @@ public class RulesFactory implements IRulesFactory {
                 rules.add(new RuleState0());
                 rules.add(new RuleState1());
                 rules.add(new RuleState2());
-                rules.add(new RuleState3());
                 return rules;
             case "immigration":
                 rules.add(new RuleBorn());
-                rules.add(new RuleBornRed());
-                rules.add(new rule.immigration.RuleDead());
+                rules.add(new RuleDead());
                 rules.add(new RuleStayAlive());
                 return rules;
             case "quadlife":

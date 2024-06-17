@@ -6,7 +6,6 @@ public enum CellType {
     GREEN,
     ALIVE,
     STATE2,
-    STATE3,
     ALMOST_DEAD,
     DEAD;
 }
