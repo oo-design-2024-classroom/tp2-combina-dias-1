@@ -19,12 +19,10 @@ public class TestRulesFactory {
     @Test
     public void testClassicRules() {
         List<Rule> rules = rulesFactory.factory("classic");
-
         assertThat(rules).hasSize(2);
         assertInstanceOf(RuleAliveClassic.class, rules.get(0));
         assertInstanceOf(RuleDeadClassic.class, rules.get(1));
     }
-
     @Test
     public void testBriansBrainRules() {
         List<Rule> rules = rulesFactory.factory("briansBrain");
@@ -33,7 +31,6 @@ public class TestRulesFactory {
         assertInstanceOf(RuleSemiDead.class, rules.get(1));
         assertInstanceOf(RuleDeadBB.class, rules.get(2));
     }
-
     @Test
     public void testStarWarsRules() {
         List<Rule> rules = rulesFactory.factory("starWars");
@@ -42,7 +39,6 @@ public class TestRulesFactory {
         assertInstanceOf(RuleState1.class, rules.get(1));
         assertInstanceOf(RuleState2.class, rules.get(2));
     }
-
     @Test
     public void testImmigrationRules() {
         List<Rule> rules = rulesFactory.factory("immigration");
@@ -51,7 +47,6 @@ public class TestRulesFactory {
         assertInstanceOf(RuleDeadImmigration.class, rules.get(1));
         assertInstanceOf(RuleStayAliveImmigration.class, rules.get(2));
     }
-
     @Test
     public void testQuadLifeRules() {
         List<Rule> rules = rulesFactory.factory("quadlife");
@@ -60,7 +55,6 @@ public class TestRulesFactory {
         assertInstanceOf(RuleDeadQuadlife.class, rules.get(1));
         assertInstanceOf(RuleStayAliveQuadlife.class, rules.get(2));
     }
-
     @Test
     public void testInvalidVariant() {
         assertThrows(IllegalArgumentException.class, () -> rulesFactory.factory("invalidVariant"));

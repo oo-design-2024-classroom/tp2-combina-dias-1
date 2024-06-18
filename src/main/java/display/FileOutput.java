@@ -4,6 +4,8 @@ import board.IBoard;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class FileOutput implements GameDisplay{
     String folderName;
@@ -12,6 +14,11 @@ public class FileOutput implements GameDisplay{
 
     public FileOutput(String folderName){
         this.folderName = folderName;
+        try {
+            Files.createDirectories(Paths.get(folderName));
+        } catch (IOException e) {
+            throw new RuntimeException("Error creating folder", e);
+        }
     }
 
     @Override

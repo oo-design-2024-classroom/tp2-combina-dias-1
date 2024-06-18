@@ -10,11 +10,13 @@ public class BoardFactory {
         int actualRow = 0;
         int actualCol = 0;
         String[] rowsStrings = boardString.split("\n");
+        if(rowsStrings.length != rows)
+            throw new IllegalArgumentException("Invalid board string");
         for(String rowString : rowsStrings) {
             if (rowString.length() != columns)
                 throw new IllegalArgumentException("Invalid board string");
             for(char c : rowString.toCharArray()) {
-                board.setCell(actualRow,actualCol,cellFactory.factory(c));
+                board.setCell(actualRow, actualCol, cellFactory.factory(c));
                 actualCol++;
             }
             actualRow++;

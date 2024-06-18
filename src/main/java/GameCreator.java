@@ -1,8 +1,6 @@
-package factory;
-
-import board.Board;
 import board.IBoard;
 import display.GameDisplay;
+import factory.*;
 import playbackMode.GameController;
 import rule.Rule;
 

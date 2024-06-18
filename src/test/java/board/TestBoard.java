@@ -5,6 +5,7 @@ import rule.Rule;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +40,6 @@ public class TestBoard {
                 X2OOXX
                 XXX2XX
                 XXXXXX""";
-
         String secondFrame = """
                 XXXXXX
                 XXXOXX
@@ -47,7 +47,6 @@ public class TestBoard {
                 XX22OX
                 XXOXXX
                 XXXXXX""";
-
         String thirdFrame = """
                 XXXXXX
                 XXO2XX
@@ -63,7 +62,6 @@ public class TestBoard {
             assertEquals(frame, board.toString());
         }
     }
-
     @Test
     public void testImmigrationBoardRedAndBlueBlinker(){
         String firstFrame = """
@@ -82,7 +80,6 @@ public class TestBoard {
             board = board.nextGeneration();
         }
     }
-
     @Test
     public void testQuadlifeBoardToadOscillator(){
         String firstFrame = """
@@ -112,7 +109,6 @@ public class TestBoard {
         board = board.nextGeneration();
         assertEquals(firstFrame, board.toString());
     }
-
     @Test
     public void testStarWarsOscillator(){
         String firstFrame = """
@@ -133,5 +129,16 @@ public class TestBoard {
         board = board.nextGeneration();
         assertEquals(secondFrame, board.toString());
     }
-
+    @Test
+    public void invalidGeneration() {
+        String firstFrame = """
+        XO23X
+        XXOXX
+        XOOOX
+        XXOXX
+        XXXXX""";
+        rules = new ArrayList<>();
+        board = boardFactory.factory(5,5,firstFrame,rules, cellFactory);
+        assertThrows(IllegalStateException.class, () -> board.nextGeneration());
+    }
 }
