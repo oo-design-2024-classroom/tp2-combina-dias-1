@@ -3,6 +3,7 @@ package board;
 import cell.Cell;
 import cell.CellType;
 import cell.ICell;
+import observer.GameObserver;
 import rule.Rule;
 
 import java.util.*;
@@ -18,6 +19,7 @@ public class Board {
         this.rules = rules;
         this.cells = new ICell[rows][columns];
     }
+
     public ICell getCell(int row, int col) {
         return cells[row][col];
     }
