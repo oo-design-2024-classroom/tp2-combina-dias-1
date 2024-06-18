@@ -9,7 +9,7 @@ import rule.Rule;
 public class RuleSemiDead implements Rule {
     @Override
     public ICell apply() {
-        return new Cell(CellType.ALMOST_DEAD);
+        return new Cell(CellType.STATE2);
     }
 
     @Override

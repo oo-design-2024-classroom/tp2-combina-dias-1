@@ -8,7 +8,7 @@ import rule.Rule;
 
 import java.util.*;
 
-public class Board {
+public class Board implements IBoard{
     ICell[][] cells;
     int rows;
     int columns;
@@ -29,9 +29,9 @@ public class Board {
 
     public Board nextGeneration() {
         Board board = new Board(rows, columns, rules);
-        boolean ruleApplied = false;
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < columns; col++) {
+                boolean ruleApplied = false;
                 for (Rule rule : rules) {
                     if (rule.isApplicable(this, row, col)) {
                         ICell newCell = rule.apply();

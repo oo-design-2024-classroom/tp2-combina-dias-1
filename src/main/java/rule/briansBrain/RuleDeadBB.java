@@ -6,7 +6,10 @@ import cell.ICell;
 import cell.CellType;
 import rule.Rule;
 
+import java.util.Map;
+
 import static cell.CellType.ALIVE;
+import static cell.CellType.DEAD;
 
 public class RuleDeadBB implements Rule {
     @Override
@@ -17,6 +20,10 @@ public class RuleDeadBB implements Rule {
     @Override
     public boolean isApplicable(Board board, int row, int column) {
         ICell cell = board.getCell(row,column);
-        return cell.type() == CellType.ALMOST_DEAD;
+        Map<CellType,Integer> neighbours = board.countNeighboursTypes(row, column);
+        int liveCells = neighbours.get(ALIVE);
+        if (cell.type() == DEAD && liveCells != 2)
+            return true;
+        return cell.type() == CellType.STATE2;
     }
 }
