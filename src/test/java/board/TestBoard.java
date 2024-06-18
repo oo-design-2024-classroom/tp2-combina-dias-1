@@ -29,4 +29,59 @@ public class TestBoard {
         board = board.nextGeneration();
         assertEquals(secondFrame, board.toString());
     }
+    @Test
+    public void testBBBoardNextGeneration(){
+        String firstFrame = "X3XX" +
+                "\nXOO3" +
+                "\n3OOX"+
+                "\nXX3X";
+        rules = rulesFactory.factory("briansBrain");
+        board = boardFactory.factory(4,4,firstFrame,rules, cellFactory);
+        board = board.nextGeneration();
+        System.out.println(board.toString());
+    }
+    @Test
+    public void testImmigrationBoardNextGeneration(){
+        String firstFrame = "XXXXX" +
+                "\nXRRRX" +
+                "\nXXXXX"+
+                "\nXXXXX"+
+                "\nXXXXX";
+        String frame = "XXXXX" +
+                "\nXRRRX" +
+                "\nXXXXX"+
+                "\nXXXXX"+
+                "\nXXXXX";
+        rules = rulesFactory.factory("immigration");
+        board = boardFactory.factory(5,5,firstFrame,rules, cellFactory);
+        board = board.nextGeneration();
+        board = board.nextGeneration();
+        board = board.nextGeneration();
+        assertEquals(frame, board.toString());
+    }
+    @Test
+    public void testQuadlifeBoardNextGeneration(){
+        String firstFrame = "XXXXXXXXX\n" +
+                "XXRXGXRXX\n" +
+                "XXXRGRXXX\n" +
+                "XXGRGRGXX\n" +
+                "XXXRGRXXX\n" +
+                "XXRXGXRXX\n" +
+                "XXXXXXXXX";
+        rules = rulesFactory.factory("quadlife");
+        board = boardFactory.factory(7,9,firstFrame,rules, cellFactory);
+        board = board.nextGeneration();
+        board = board.nextGeneration();
+        board = board.nextGeneration();
+        assertEquals(firstFrame, board.toString());
+    }
+    @Test
+    public void testStarWarsNextGeneration(){
+        String firstFrame = "XOX\nOOO\nXOX";
+        rules = rulesFactory.factory("starWars");
+        board = boardFactory.factory(7,9,firstFrame,rules, cellFactory);
+        board = board.nextGeneration();
+        assertEquals(firstFrame, board.toString());
+    }
+
 }

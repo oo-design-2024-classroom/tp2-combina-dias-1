@@ -40,7 +40,8 @@ public class Board {
                         break;
                     }
                 }
-                if (!ruleApplied) throw new IllegalStateException("no rule has been applied");
+                if (!ruleApplied)
+                    throw new IllegalStateException("no rule has been applied");
             }
         }
         return board;
@@ -52,6 +53,9 @@ public class Board {
 
     public Map<CellType, Integer> countNeighboursTypes(int row, int col){
         Map<CellType, Integer> neighbours = new HashMap<>();
+        for (CellType type : CellType.values()) {
+            neighbours.put(type, 0);
+        }
         for(int i=-1; i<=1; i++){
             for(int j=-1; j<=1; j++){
                 if((i != 0 || j!=0) && isValidPos(row+i, col+j)){

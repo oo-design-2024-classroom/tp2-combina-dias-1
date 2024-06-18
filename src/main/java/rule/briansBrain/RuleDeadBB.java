@@ -17,6 +17,6 @@ public class RuleDeadBB implements Rule {
     @Override
     public boolean isApplicable(Board board, int row, int column) {
         ICell cell = board.getCell(row,column);
-        return cell.type() != ALIVE && cell.type() != CellType.ALMOST_DEAD;
+        return cell.type() == CellType.ALMOST_DEAD;
     }
 }

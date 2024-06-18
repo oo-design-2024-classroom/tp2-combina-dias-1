@@ -17,11 +17,11 @@ public class RuleAliveBB implements Rule {
     @Override
     public boolean isApplicable(Board board, int row, int column) {
         ICell cell = board.getCell(row,column);
+        if(cell.type() != CellType.DEAD)
+            return false;
         Map<CellType,Integer> neighbours = board.countNeighboursTypes(row,column);
         int aliveNeighbours = neighbours.get(CellType.ALIVE);
         int almostDeadNeighbours = neighbours.get(CellType.ALMOST_DEAD);
-        if(cell.type() != CellType.DEAD)
-            return false;
-        return aliveNeighbours == 2 || (almostDeadNeighbours == 1 && aliveNeighbours == 3);
+        return aliveNeighbours == 2 || (aliveNeighbours == 1 && almostDeadNeighbours == 3);
     }
 }
