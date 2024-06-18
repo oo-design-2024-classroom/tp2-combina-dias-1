@@ -2,8 +2,6 @@ package playbackMode;
 
 import board.IBoard;
 import display.GameDisplay;
-import observer.GameObserver;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -11,21 +9,20 @@ public class LimitedGenerationsMode implements GameController {
     IBoard board;
     List<GameDisplay> displays;
     int generations;
-    List<GameObserver> observers;
+    List<GameDisplay> observers;
 
-    public void addObserver(GameObserver observer) {
+    public void addObserver(GameDisplay observer) {
         observers.add(observer);
     }
-    public void removeObserver(GameObserver observer) {
+    public void removeObserver(GameDisplay observer) {
         observers.remove(observer);
     }
-    public void notifyObservers() {
-        for(GameObserver observer : observers)
+    public void notifyObservers() throws IOException {
+        for(GameDisplay observer : observers)
             observer.update(board);
     }
-    public LimitedGenerationsMode(IBoard board, List<GameDisplay> displays, int generations){
+    public LimitedGenerationsMode(IBoard board, int generations){
         this.board = board;
-        this.displays = displays;
         this.generations = generations;
     }
 

@@ -2,28 +2,25 @@ package playbackMode;
 
 import board.IBoard;
 import display.GameDisplay;
-import observer.GameObserver;
-
 import java.io.IOException;
 import java.util.List;
 
 public class SimulationMode implements GameController {
     IBoard board;
     List<GameDisplay> displays;
-    List<GameObserver> observers;
-    public void addObserver(GameObserver observer) {
+    List<GameDisplay> observers;
+    public void addObserver(GameDisplay observer) {
         observers.add(observer);
     }
-    public void removeObserver(GameObserver observer) {
+    public void removeObserver(GameDisplay observer) {
         observers.remove(observer);
     }
-    public void notifyObservers() {
-        for(GameObserver observer : observers)
+    public void notifyObservers() throws IOException {
+        for(GameDisplay observer : observers)
             observer.update(board);
     }
-    public SimulationMode(IBoard board, List<GameDisplay> displays){
+    public SimulationMode(IBoard board){
         this.board = board;
-        this.displays = displays;
     }
 
     @Override

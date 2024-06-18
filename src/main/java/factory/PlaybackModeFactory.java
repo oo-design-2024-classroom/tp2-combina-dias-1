@@ -1,13 +1,10 @@
 package factory;
-import board.Board;
 import board.IBoard;
-import display.GameDisplay;
 import playbackMode.ContinuousMode;
 import playbackMode.LimitedGenerationsMode;
 import playbackMode.GameController;
 import playbackMode.SimulationMode;
 
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -20,16 +17,16 @@ public class PlaybackModeFactory {
      * "INFINITE:SPEED" SPEED es un float
      * "SIMULATION"
      */
-    public GameController getPlaybackMode(String modeName, IBoard board, List<GameDisplay> displays) {
+    public GameController getPlaybackMode(String modeName, IBoard board) {
         if (modeName == null) {
             throw new IllegalArgumentException("Mode name cannot be null");
         }
         if (matchLimitedMode(modeName)) {
-            return new LimitedGenerationsMode(board, displays, generations);
+            return new LimitedGenerationsMode(board, generations);
         } else if (matchContinuousMode(modeName)) {
-            return new ContinuousMode(board, displays, speed);
+            return new ContinuousMode(board, speed);
         } else if (modeName.equals("SIMULATION")) {
-            return new SimulationMode(board, displays);
+            return new SimulationMode(board);
         } else {
             throw new IllegalArgumentException("Invalid mode name");
         }

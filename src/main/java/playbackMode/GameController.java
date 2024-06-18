@@ -1,11 +1,10 @@
 package playbackMode;
 
-import observer.GameObserver;
-
+import display.GameDisplay;
 import java.io.IOException;
 
 public interface GameController {
     void reproduce() throws IOException, InterruptedException;
-    void addObserver(GameObserver observer);
-    void removeObserver(GameObserver observer);
+    void addObserver(GameDisplay observer);
+    void removeObserver(GameDisplay observer);
 }

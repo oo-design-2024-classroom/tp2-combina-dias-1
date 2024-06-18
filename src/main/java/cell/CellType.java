@@ -7,5 +7,5 @@ public enum CellType {
     ALIVE,
     STATE2,
     STATE3,
-    DEAD;
+    DEAD
 }

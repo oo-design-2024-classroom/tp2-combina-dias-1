@@ -1,9 +1,7 @@
 package board;
 
-import cell.Cell;
 import cell.CellType;
 import cell.ICell;
-import observer.GameObserver;
 import rule.Rule;
 
 import java.util.*;

@@ -25,7 +25,6 @@ public class Cell implements ICell {
             case STATE2 -> "2";
             case STATE3 -> "3";
             case DEAD -> "X";
-            default -> throw new IllegalArgumentException("Unknown cell type: " + this);
         };
     }
 

@@ -1,7 +1,11 @@
+import display.GameDisplay;
+import factory.DisplaysFactory;
+import factory.GameCreator;
 import playbackMode.GameController;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.List;
 import java.util.Properties;
 
 public class Main {
@@ -12,6 +16,8 @@ public class Main {
             throw new IllegalArgumentException("El archivo de configuración no puede estar vacío.");
         }
         GameController game = createGameFromFile(args[0]);
+        List<GameDisplay> displays = getDisplaysFromFile(args[0]);
+        for(GameDisplay d: displays) game.addObserver(d);
         game.reproduce();
     }
 
@@ -19,13 +25,18 @@ public class Main {
         Properties properties = loadPropertiesFile(filename);
         String boardPositionsString = getProperty(properties, "BOARD");
         String variantString = getProperty(properties, "VARIANT");
-        String displayString = getProperty(properties, "DISPLAY");
         String playbackModeString = getProperty(properties, "PLAYBACKMODE");
         String rowsString = getProperty(properties, "ROWS");
         String colsString = getProperty(properties, "COLS");
         int rows = Integer.parseInt(rowsString);
         int cols = Integer.parseInt(colsString);
-        return GameCreator.getGame(variantString, playbackModeString, displayString, rows, cols, boardPositionsString);
+        return GameCreator.getGame(variantString, playbackModeString, rows, cols, boardPositionsString);
+    }
+
+    private static List<GameDisplay> getDisplaysFromFile(String filename) throws IOException {
+        Properties properties = loadPropertiesFile(filename);
+        String displayType = getProperty(properties, "DISPLAY");
+        return DisplaysFactory.factory(displayType);
     }
 
     public static Properties loadPropertiesFile(String configFileName) throws IOException {
