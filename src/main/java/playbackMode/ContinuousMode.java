@@ -1,5 +1,5 @@
 package playbackMode;
-import board.Board;
+import board.IBoard;
 import display.GameDisplay;
 import observer.GameObserver;
 
@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class ContinuousMode implements GameController {
-    Board board;
+    IBoard board;
     List<GameDisplay> displays;
     float sleepTime;
     List<GameObserver> observers;
@@ -21,7 +21,7 @@ public class ContinuousMode implements GameController {
         for(GameObserver observer : observers)
             observer.update(board);
     }
-    public ContinuousMode(Board board, List<GameDisplay> displays, float sleepTimeInSeconds){
+    public ContinuousMode(IBoard board, List<GameDisplay> displays, float sleepTimeInSeconds){
         this.board = board;
         this.displays = displays;
         this.sleepTime = sleepTimeInSeconds;

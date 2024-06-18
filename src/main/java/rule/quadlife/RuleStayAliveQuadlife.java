@@ -3,10 +3,11 @@ package rule.quadlife;
 import board.Board;
 import cell.CellType;
 import cell.ICell;
+import rule.Rule;
 
 import java.util.Map;
 
-public class RuleStayAliveQuadlife extends QuadlifeRule {
+public class RuleStayAliveQuadlife implements Rule {
     ICell cell;
     @Override
     public ICell apply() {

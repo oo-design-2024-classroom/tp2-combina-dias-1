@@ -5,19 +5,20 @@ import rule.Rule;
 import java.util.List;
 
 public class BoardFactory {
-    public Board factory(int rows, int columns, String boardString, List<Rule> rules, CellFactory cellFactory){
-        Board board = new Board(rows, columns, rules);
+    public IBoard factory(int rows, int columns, String boardString, List<Rule> rules, CellFactory cellFactory){
+        IBoard board = new Board(rows, columns, rules);
         int actualRow = 0;
         int actualCol = 0;
-        for(char c : boardString.toCharArray()) {
-                if(c != '\n' && c != ' ' && c != '|') {
-                    board.setCell(actualRow,actualCol,cellFactory.factory(c));
-                    actualCol++;
-                }
-                if(actualCol == columns) {
-                    actualRow++;
-                    actualCol = 0;
-                }
+        String[] rowsStrings = boardString.split("\n");
+        for(String rowString : rowsStrings) {
+            if (rowString.length() != columns)
+                throw new IllegalArgumentException("Invalid board string");
+            for(char c : rowString.toCharArray()) {
+                board.setCell(actualRow,actualCol,cellFactory.factory(c));
+                actualCol++;
+            }
+            actualRow++;
+            actualCol = 0;
         }
         return board;
     }

@@ -10,20 +10,15 @@ import java.util.List;
 import java.util.Map;
 
 public class RuleState2 implements Rule {
-    ICell cell;
     public ICell apply() {
-        if(cell == null)
-            throw new IllegalArgumentException("Illegal call");
-        return cell;
+        return new Cell(CellType.STATE2);
     }
 
     public boolean isApplicable(Board board, int row, int column) {
-        cell = board.getCell(row, column);
-        if(cell.type() != CellType.ALIVE)
-            return false;
+        ICell cell = board.getCell(row, column);
         Map<CellType, Integer> neighbours = board.countNeighboursTypes(row, column);
-        if(neighbours.get(CellType.ALIVE) < 3 || neighbours.get(CellType.ALIVE) > 5)
-            cell = new Cell(CellType.STATE2);
-        return true;
+        int liveCells = neighbours.get(CellType.ALIVE);
+        if(cell.type() == CellType.ALIVE && (liveCells < 3 || liveCells > 5)) return true;
+        return false;
     }
 }

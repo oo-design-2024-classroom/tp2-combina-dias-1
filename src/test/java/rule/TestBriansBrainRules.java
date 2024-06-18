@@ -32,14 +32,14 @@ class TestBriansBrainRules {
         assertFalse(rule.isApplicable(board, 0, 0));
 
         ICell result = rule.apply();
-        assertEquals(CellType.ALMOST_DEAD, result.type());
+        assertEquals(CellType.STATE2, result.type());
     }
 
     @Test
     void testRuleDead() {
         RuleDeadBB rule = new RuleDeadBB();
         ICell deadCell = new Cell(CellType.DEAD);
-        ICell almostDeadCell = new Cell(CellType.ALMOST_DEAD);
+        ICell almostDeadCell = new Cell(CellType.STATE2);
         ICell aliveCell = new Cell(CellType.ALIVE);
 
         // Alive and almost dead cell scenarios
@@ -90,7 +90,7 @@ class TestBriansBrainRules {
     private Map<CellType, Integer> createNeighborsMap(int aliveNeighbors, int almostDeadNeighbors) {
         Map<CellType, Integer> neighbors = new HashMap<>();
         neighbors.put(CellType.ALIVE, aliveNeighbors);
-        neighbors.put(CellType.ALMOST_DEAD, almostDeadNeighbors);
+        neighbors.put(CellType.STATE2, almostDeadNeighbors);
         return neighbors;
     }
 }

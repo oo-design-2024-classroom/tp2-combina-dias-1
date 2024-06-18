@@ -1,6 +1,7 @@
 package factory;
 
 import board.Board;
+import board.IBoard;
 import display.GameDisplay;
 import playbackMode.GameController;
 import rule.Rule;
@@ -12,7 +13,7 @@ public class GameCreator {
         List<Rule> rules = new RulesFactory().factory(variant);
         List<GameDisplay> gameDisplaysList = DisplaysFactory.factory(displays);
         BoardFactory boardFactory = new BoardFactory();
-        Board board = boardFactory.factory(rows, cols, initialBoardPositions, rules, new CellFactory());
+        IBoard board = boardFactory.factory(rows, cols, initialBoardPositions, rules, new CellFactory());
         return new PlaybackModeFactory().getPlaybackMode(playbackMode, board, gameDisplaysList);
     }
 }

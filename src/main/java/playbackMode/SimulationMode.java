@@ -1,6 +1,6 @@
 package playbackMode;
 
-import board.Board;
+import board.IBoard;
 import display.GameDisplay;
 import observer.GameObserver;
 
@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class SimulationMode implements GameController {
-    Board board;
+    IBoard board;
     List<GameDisplay> displays;
     List<GameObserver> observers;
     public void addObserver(GameObserver observer) {
@@ -21,7 +21,7 @@ public class SimulationMode implements GameController {
         for(GameObserver observer : observers)
             observer.update(board);
     }
-    public SimulationMode(Board board, List<GameDisplay> displays){
+    public SimulationMode(IBoard board, List<GameDisplay> displays){
         this.board = board;
         this.displays = displays;
     }

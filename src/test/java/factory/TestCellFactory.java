@@ -15,7 +15,7 @@ public class TestCellFactory {
         assertEquals(CellType.GREEN,      cellFactory.factory('G').type());
         assertEquals(CellType.ALIVE,      cellFactory.factory('O').type());
         assertEquals(CellType.STATE2,     cellFactory.factory('2').type());
-        assertEquals(CellType.ALMOST_DEAD, cellFactory.factory('3').type());
+        assertEquals(CellType.STATE3, cellFactory.factory('3').type());
     }
 
     @Test

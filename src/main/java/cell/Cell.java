@@ -23,7 +23,7 @@ public class Cell implements ICell {
             case GREEN -> "G";
             case ALIVE -> "O";
             case STATE2 -> "2";
-            case ALMOST_DEAD -> "3";
+            case STATE3 -> "3";
             case DEAD -> "X";
             default -> throw new IllegalArgumentException("Unknown cell type: " + this);
         };

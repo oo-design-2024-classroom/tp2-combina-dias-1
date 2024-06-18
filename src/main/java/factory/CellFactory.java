@@ -21,7 +21,7 @@ public class CellFactory {
         if(cellType == '2')
             return new Cell(CellType.STATE2);
         if(cellType == '3')
-            return new Cell(CellType.ALMOST_DEAD);
+            return new Cell(CellType.STATE3);
         throw new IllegalArgumentException("Invalid cell type: " + cellType);
     }
 }

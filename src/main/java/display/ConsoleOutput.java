@@ -1,8 +1,8 @@
 package display;
-import board.Board;
+import board.IBoard;
 
 public class ConsoleOutput implements GameDisplay {
-    public void update(Board board) {
+    public void update(IBoard board) {
         show(board.toString());
     }
     public void show(String content){

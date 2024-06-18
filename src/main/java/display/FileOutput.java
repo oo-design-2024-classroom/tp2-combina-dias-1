@@ -1,6 +1,7 @@
 package display;
 
-import board.Board;
+import board.IBoard;
+
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -14,7 +15,7 @@ public class FileOutput implements GameDisplay{
     }
 
     @Override
-    public void update(Board board) throws IOException {
+    public void update(IBoard board) throws IOException {
         boardsGenerated++;
         try {
             writer = new FileWriter(folderName + "/" + boardsGenerated + ".txt");

@@ -1,7 +1,7 @@
 package observer;
 
-import board.Board;
+import board.IBoard;
 
 public interface GameObserver {
-    public void update(Board board);
+    public void update(IBoard board);
 }

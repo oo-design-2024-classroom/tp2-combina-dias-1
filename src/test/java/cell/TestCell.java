@@ -15,7 +15,7 @@ class TestCell {
                 () -> assertEquals("G", new Cell(CellType.GREEN).toString()),
                 () -> assertEquals("O", new Cell(CellType.ALIVE).toString()),
                 () -> assertEquals("2", new Cell(CellType.STATE2).toString()),
-                () -> assertEquals("3", new Cell(CellType.ALMOST_DEAD).toString()),
+                () -> assertEquals("3", new Cell(CellType.STATE3).toString()),
                 () -> assertEquals("X", new Cell(CellType.DEAD).toString())
         );
 

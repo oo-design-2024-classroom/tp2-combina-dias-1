@@ -21,7 +21,7 @@ public class RuleAliveBB implements Rule {
             return false;
         Map<CellType,Integer> neighbours = board.countNeighboursTypes(row,column);
         int aliveNeighbours = neighbours.get(CellType.ALIVE);
-        int almostDeadNeighbours = neighbours.get(CellType.ALMOST_DEAD);
+        int almostDeadNeighbours = neighbours.get(CellType.STATE2);
         return aliveNeighbours == 2 || (aliveNeighbours == 1 && almostDeadNeighbours == 3);
     }
 }

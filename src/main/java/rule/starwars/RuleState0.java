@@ -5,24 +5,19 @@ import rule.Rule;
 
 import java.util.Map;
 
+import static cell.CellType.DEAD;
+
 public class RuleState0 implements Rule {
-    ICell cell;
     public ICell apply() {
-        if(cell == null)
-            throw new IllegalArgumentException("Illegal call");
-        return cell;
+        return new Cell(DEAD);
     }
 
     public boolean isApplicable(Board board, int row, int column) {
-        cell = board.getCell(row, column);
-        if(cell.type() == CellType.STATE2) {
-            cell = new Cell(CellType.ALMOST_DEAD);
+        ICell cell = board.getCell(row, column);
+        if(cell.type() == CellType.STATE3) {
             return true;
         }
-        if(cell.type() == CellType.ALMOST_DEAD) {
-            cell = new Cell(CellType.DEAD);
-            return true;
-        }
-        return false;
+        int liveNeighbours = board.countNeighboursTypes(row, column).get(CellType.ALIVE);
+        return cell.type() == CellType.DEAD && liveNeighbours != 2;
     }
 }

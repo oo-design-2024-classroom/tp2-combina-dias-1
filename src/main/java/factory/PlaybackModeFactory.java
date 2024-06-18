@@ -1,5 +1,6 @@
 package factory;
 import board.Board;
+import board.IBoard;
 import display.GameDisplay;
 import playbackMode.ContinuousMode;
 import playbackMode.LimitedGenerationsMode;
@@ -19,7 +20,7 @@ public class PlaybackModeFactory {
      * "INFINITE:SPEED" SPEED es un float
      * "SIMULATION"
      */
-    public GameController getPlaybackMode(String modeName, Board board, List<GameDisplay> displays) {
+    public GameController getPlaybackMode(String modeName, IBoard board, List<GameDisplay> displays) {
         if (modeName == null) {
             throw new IllegalArgumentException("Mode name cannot be null");
         }

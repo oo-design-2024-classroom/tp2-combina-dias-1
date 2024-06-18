@@ -4,10 +4,11 @@ import board.Board;
 import cell.Cell;
 import cell.ICell;
 import cell.CellType;
+import rule.Rule;
 
 import java.util.Map;
 
-public class RuleDeadQuadlife extends QuadlifeRule {
+public class RuleDeadQuadlife implements Rule {
     @Override
     public ICell apply() {
         return new Cell(CellType.DEAD);
