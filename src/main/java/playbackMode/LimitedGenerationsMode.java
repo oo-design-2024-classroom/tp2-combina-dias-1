@@ -7,7 +7,6 @@ import java.util.List;
 
 public class LimitedGenerationsMode implements GameController {
     IBoard board;
-    List<GameDisplay> displays;
     int generations;
     List<GameDisplay> observers;
 
@@ -29,11 +28,8 @@ public class LimitedGenerationsMode implements GameController {
     @Override
     public void reproduce() throws IOException {
         for(int i = 0; i < generations; i++){
-            for(GameDisplay display: displays){
-                display.update(board);
-                notifyObservers();
-                board = board.nextGeneration();
-            }
+            notifyObservers();
+            board = board.nextGeneration();
         }
     }
 }

@@ -1,5 +1,8 @@
-package cell;
+package rule;
 
+import cell.Cell;
+import cell.CellType;
+import cell.ICell;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

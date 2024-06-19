@@ -3,12 +3,12 @@ package playbackMode;
 import board.IBoard;
 import display.GameDisplay;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SimulationMode implements GameController {
     IBoard board;
-    List<GameDisplay> displays;
-    List<GameDisplay> observers;
+    List<GameDisplay> observers = new ArrayList<>();
     public void addObserver(GameDisplay observer) {
         observers.add(observer);
     }
@@ -27,11 +27,8 @@ public class SimulationMode implements GameController {
     public void reproduce() throws IOException {
         boolean stopSimulation = false;
         while (!stopSimulation){
-            for(GameDisplay display: displays){
-                display.update(board);
-                notifyObservers();
-                board = board.nextGeneration();
-            }
+            board = board.nextGeneration();
+            notifyObservers();
             System.out.println("Press any key to continue, or S to stop simulation");
             if(System.in.read() == 'S'){
                 stopSimulation = true;

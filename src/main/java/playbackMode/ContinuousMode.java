@@ -2,13 +2,13 @@ package playbackMode;
 import board.IBoard;
 import display.GameDisplay;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ContinuousMode implements GameController {
     IBoard board;
-    List<GameDisplay> displays;
     float sleepTime;
-    List<GameDisplay> observers;
+    List<GameDisplay> observers = new ArrayList<>();
     public void addObserver(GameDisplay observer) {
         observers.add(observer);
     }
@@ -27,11 +27,8 @@ public class ContinuousMode implements GameController {
     @Override
     public void reproduce() throws InterruptedException, IOException {
         while (true){
-            for(GameDisplay display: displays){
-                display.update(board);
-                board = board.nextGeneration();
-                notifyObservers();
-            }
+            board = board.nextGeneration();
+            notifyObservers();
             Thread.sleep((long) (sleepTime * 1000));
         }
     }
